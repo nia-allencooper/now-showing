@@ -72,6 +72,16 @@ def main():
         added, removed = [], []
         prev_label = None
 
+    # Optional cross-device sync backend (Google Apps Script web-app URL).
+    sync_file = ROOT / "sync-url.txt"
+    sync_url = ""
+    if sync_file.exists():
+        for line in sync_file.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line and not line.startswith("#"):
+                sync_url = line
+                break
+
     env = Environment(
         loader=FileSystemLoader(str(TEMPLATES)),
         autoescape=select_autoescape(["html", "j2"]),
@@ -86,6 +96,7 @@ def main():
         this_label=date_label(latest_date),
         prev_label=prev_label,
         is_first_run=prev_path is None,
+        sync_url=sync_url,
         generated_at=datetime.datetime.now(datetime.timezone.utc).strftime(
             "%Y-%m-%d %H:%M UTC"
         ),

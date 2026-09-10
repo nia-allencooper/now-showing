@@ -76,9 +76,22 @@ Run the task once by hand (right-click → Run) to confirm it works.
 
 Each poster has a mark control; the filter bar above the grid narrows to one
 kind. Marks are stored in the browser's `localStorage`, keyed by Odeon's `HO`
-id, so they survive the weekly rebuild. **Per-browser only** — no sync across
-devices, no accounts. Cross-device sync would need a small store alongside Pages
-(e.g. Supabase / Cloudflare KV keyed by a secret link); not built.
+id, so they survive the weekly rebuild.
+
+### Cross-device sync (optional, free)
+
+Off by default (per-browser). To turn it on, follow the steps at the top of
+[`apps-script.gs`](apps-script.gs): make a Google Sheet, paste that script into
+its Apps Script editor, deploy it as a web app, and put the resulting `/exec`
+URL in a file `sync-url.txt` in this folder. Next build bakes it in and the page
+gains a **Sync** button.
+
+- `sync-url.txt` is git-ignored (local config); the URL still ends up in the
+  built `site/index.html`, which is fine — access control is the secret link,
+  not the URL.
+- Model: one JSON blob per secret key, newest write wins. Good for one person on
+  two devices; not built for many people editing the same list at once.
+- No key set = no sync, page works exactly as before.
 
 ## Adding posters / exact titles later
 
