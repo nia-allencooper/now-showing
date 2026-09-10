@@ -1,7 +1,7 @@
 {
-  "scraped_at": "2026-09-10T14:56:18.133357+01:00",
+  "scraped_at": "2026-09-10T15:36:54.902878+01:00",
   "source": "https://www.odeon.co.uk/sitemap.xml",
-  "count": 163,
+  "count": 164,
   "films": [
     {
       "id": "HO00009446",
@@ -164,6 +164,14 @@
       "poster_source": "odeon"
     },
     {
+      "id": "HO00009465",
+      "slug": "digger-presented-in-vistavision",
+      "title": "Digger Presented in Vistavision",
+      "url": "https://www.odeon.co.uk/films/digger-presented-in-vistavision/HO00009465/",
+      "poster": "https://image.tmdb.org/t/p/w500/1ATXKrIPJyKNwnJ6lcG088Sa6zi.jpg",
+      "poster_source": "tmdb"
+    },
+    {
       "id": "HO00009109",
       "slug": "disneys-hexed",
       "title": "Disneys Hexed",
@@ -296,8 +304,8 @@
       "slug": "haiwaan",
       "title": "Haiwaan",
       "url": "https://www.odeon.co.uk/films/haiwaan/HO00009437/",
-      "poster": null,
-      "poster_source": null
+      "poster": "https://image.tmdb.org/t/p/w500/ykXYDPPvoPhTaBeQ90OibCaCOWX.jpg",
+      "poster_source": "tmdb"
     },
     {
       "id": "HO00009299",
@@ -376,8 +384,8 @@
       "slug": "hoppers",
       "title": "Hoppers",
       "url": "https://www.odeon.co.uk/films/hoppers/HO00008213/",
-      "poster": null,
-      "poster_source": null
+      "poster": "https://image.tmdb.org/t/p/w500/xjtWQ2CL1mpmMNwuU5HeS4Iuwuu.jpg",
+      "poster_source": "tmdb"
     },
     {
       "id": "HO00009031",
@@ -576,8 +584,8 @@
       "slug": "michael",
       "title": "Michael",
       "url": "https://www.odeon.co.uk/films/michael/HO00008527/",
-      "poster": null,
-      "poster_source": null
+      "poster": "https://image.tmdb.org/t/p/w500/dueFqKLvjftnELZaGYwY7xinfaI.jpg",
+      "poster_source": "tmdb"
     },
     {
       "id": "HO00008565",
@@ -672,8 +680,8 @@
       "slug": "obsession",
       "title": "Obsession",
       "url": "https://www.odeon.co.uk/films/obsession/HO00008744/",
-      "poster": null,
-      "poster_source": null
+      "poster": "https://image.tmdb.org/t/p/w500/bRwnj8WEKBCvmfeUNOukJPwB43K.jpg",
+      "poster_source": "tmdb"
     },
     {
       "id": "HO00009396",
@@ -952,8 +960,8 @@
       "slug": "sinners",
       "title": "Sinners",
       "url": "https://www.odeon.co.uk/films/sinners/HO00006623/",
-      "poster": null,
-      "poster_source": null
+      "poster": "https://image.tmdb.org/t/p/w500/fWPgbnt2LSqkQ6cdQc0SZN9CpLm.jpg",
+      "poster_source": "tmdb"
     },
     {
       "id": "HO00009111",
@@ -1224,8 +1232,8 @@
       "slug": "tuner",
       "title": "Tuner",
       "url": "https://www.odeon.co.uk/films/tuner/HO00008742/",
-      "poster": null,
-      "poster_source": null
+      "poster": "https://image.tmdb.org/t/p/w500/5OvA3i9wZs5jHu0DCrfmXlzAM67.jpg",
+      "poster_source": "tmdb"
     },
     {
       "id": "HO00009047",

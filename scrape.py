@@ -51,9 +51,13 @@ FILM_LOC = re.compile(
 _SMALL = {"a", "an", "and", "as", "at", "but", "by", "for", "from",
           "in", "of", "on", "or", "the", "to", "vs", "with"}
 
-# Trailing tokens on slug-titles that hurt a TMDB search ("... Malayalam", "(Dubbed)").
+# Tokens on slug-titles that hurt a TMDB search: languages, formats, event tags.
 _TMDB_STRIP = {"dubbed", "subbed", "sub", "dub", "malayalam", "tamil", "telugu",
-               "hindi", "punjabi", "imax", "4dx", "70mm", "encore", "rerelease"}
+               "hindi", "punjabi", "bengali", "korean", "japanese",
+               "imax", "4dx", "3d", "2d", "70mm", "35mm", "vistavision",
+               "encore", "rerelease", "re", "release", "remastered", "restored",
+               "presented", "in", "the", "screening", "preview", "marathon",
+               "unlimited", "anniversary", "sing", "along", "singalong"}
 
 
 def title_from_slug(slug: str) -> str:
