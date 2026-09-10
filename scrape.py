@@ -25,6 +25,8 @@ import zoneinfo
 from curl_cffi import requests
 
 SITEMAP = "https://www.odeon.co.uk/sitemap.xml"
+# Poster endpoint, keyed by the HO film id - open, no auth, not Cloudflare-gated.
+POSTER = "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/{id}?width=400"
 SNAP_DIR = pathlib.Path(__file__).parent / "snapshots"
 UK = zoneinfo.ZoneInfo("Europe/London")
 
@@ -92,6 +94,7 @@ def parse(xml: str):
             "slug": slug,
             "title": title_from_slug(slug),
             "url": url,
+            "poster": POSTER.format(id=film_id),
         })
     return sorted(seen.values(), key=lambda f: f["title"].lower())
 

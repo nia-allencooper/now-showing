@@ -347,10 +347,18 @@
     transform: translateY(-3px);
     box-shadow: 0 1px 2px rgba(0,0,0,.3), 0 22px 40px -18px rgba(0,0,0,.55);
   }
+  .poster .pimg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
   .poster .scrim {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,.74) 4%, rgba(0,0,0,.16) 44%, transparent 70%);
+    background: linear-gradient(to top, rgba(0,0,0,.66) 2%, rgba(0,0,0,.10) 34%, transparent 55%);
   }
   .poster::before {
     content: "";
@@ -359,19 +367,22 @@
     width: 7px;
     background-image: repeating-linear-gradient(to bottom,
       rgba(0,0,0,.55) 0 4px, transparent 4px 10px);
-    opacity: .5;
+    opacity: .45;
+    z-index: 2;
   }
   .poster .ptitle {
     position: relative;
+    z-index: 2;
     font-family: "Oswald", "Arial Narrow", sans-serif;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .015em;
-    line-height: 1.04;
+    line-height: 1.05;
     color: #fff;
-    font-size: 1.05rem;
-    padding: 12px 12px 13px;
+    font-size: .82rem;
+    padding: 10px 10px 11px;
     text-wrap: balance;
+    text-shadow: 0 1px 3px rgba(0,0,0,.55);
   }
 
   /* ---------- footer ---------- */
@@ -457,8 +468,7 @@
     <div class="change-col add">
       <header><span class="pip"></span>Added<span class="n">{{ added|length }}</span></header>
       {% for f in added %}
-      <a class="crow" href="{{ f.url }}" target="_blank" rel="noopener"
-         style="--h: {{ f.hue }};{% if f.poster %} background-image: none;{% endif %}">
+      <a class="crow" href="{{ f.url }}" target="_blank" rel="noopener" style="--h: {{ f.hue }}">
         <span class="mini"{% if f.poster %} style="background-image: url('{{ f.poster }}')"{% endif %}></span>
         <span class="ctitle">{{ f.title }}</span>
         <span class="arrow">&#8599;</span>
@@ -494,7 +504,10 @@
   <div class="grid">
     {% for f in films %}
     <a class="film" href="{{ f.url }}" target="_blank" rel="noopener" style="--h: {{ f.hue }}">
-      <span class="poster"><span class="scrim"></span><span class="ptitle">{{ f.title }}</span></span>
+      <span class="poster">
+        {% if f.poster %}<img class="pimg" src="{{ f.poster }}" alt="{{ f.title }} poster" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">{% endif %}
+        <span class="scrim"></span><span class="ptitle">{{ f.title }}</span>
+      </span>
     </a>
     {% endfor %}
   </div>
