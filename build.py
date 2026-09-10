@@ -92,7 +92,7 @@ def main():
     )
 
     SITE_DIR.mkdir(exist_ok=True)
-    (SITE_DIR / "index.html").write_text(html, encoding="utf-8")
+    (SITE_DIR / "index.html").write_text(html, encoding="utf-8", newline="\n")
     (SITE_DIR / "latest.json").write_text(
         json.dumps(
             {
@@ -106,6 +106,7 @@ def main():
             ensure_ascii=False,
         ),
         encoding="utf-8",
+        newline="\n",
     )
     print(
         f"built site/index.html - {latest['count']} listed, "

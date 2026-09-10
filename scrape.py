@@ -125,6 +125,7 @@ def main():
             ensure_ascii=False,
         ),
         encoding="utf-8",
+        newline="\n",
     )
     print(f"wrote {out.name}: {len(films)} films")
 
