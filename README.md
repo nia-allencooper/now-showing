@@ -24,9 +24,22 @@ machine; GitHub only publishes the page.
 
 ### What the sitemap gives us
 
-Film IDs, URLs, and slug-derived titles. **No posters, no age ratings, no
-now-showing vs coming-soon split.** Titles are approximate — the slug has already
-lost `&`, apostrophes and brackets (`arrietty-dubbed` → "Arrietty Dubbed").
+Film IDs, URLs, and slug-derived titles. Titles are approximate — the slug has
+already lost `&`, apostrophes and brackets (`arrietty-dubbed` → "Arrietty
+Dubbed"). No age ratings, no now-showing vs coming-soon split.
+
+### Posters
+
+`scrape.py` resolves a poster per film:
+
+1. Odeon's own poster endpoint, keyed by the `HO` id (covers ~96%).
+2. For the rest, a **TMDB** search by title — *optional*, needs a free key.
+
+Without a TMDB key those ~7 films just show a coloured tile with the title.
+To enable the fallback: get a key at
+<https://www.themoviedb.org/settings/api> (the **API Key (v3 auth)** value),
+then either set an environment variable `TMDB_API_KEY`, or save the key in a file
+`tmdb-key.txt` next to `scrape.py` (git-ignored).
 
 ## One-time setup
 
