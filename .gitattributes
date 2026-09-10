@@ -1,0 +1,3 @@
+# Keep LF everywhere - the GitHub Actions runner is Linux and the workflow
+# has shell blocks that break with CRLF.
+* text=auto eol=lf
