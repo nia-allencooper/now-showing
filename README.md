@@ -72,6 +72,14 @@ Repo is already pushed. In **Settings → Pages**, set **Source: GitHub Actions*
 
 Run the task once by hand (right-click → Run) to confirm it works.
 
+## Your marks (watchlist / booked / seen / skip)
+
+Each poster has a mark control; the filter bar above the grid narrows to one
+kind. Marks are stored in the browser's `localStorage`, keyed by Odeon's `HO`
+id, so they survive the weekly rebuild. **Per-browser only** — no sync across
+devices, no accounts. Cross-device sync would need a small store alongside Pages
+(e.g. Supabase / Cloudflare KV keyed by a secret link); not built.
+
 ## Adding posters / exact titles later
 
 Needs the rendered `/films/` page (Cloudflare + JavaScript), via either a paid
