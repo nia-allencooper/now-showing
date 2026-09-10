@@ -19,6 +19,7 @@ import json
 import pathlib
 import re
 import sys
+import time
 import zoneinfo
 
 from curl_cffi import requests
@@ -60,14 +61,26 @@ def title_from_slug(slug: str) -> str:
 
 
 def fetch_sitemap() -> str:
-    r = requests.get(
-        SITEMAP,
-        impersonate="chrome131",
-        timeout=45,
-        headers={"Referer": "https://www.odeon.co.uk/"},
-    )
-    r.raise_for_status()
-    return r.text
+    """Fetch the sitemap, trying a few browser fingerprints. Run this from a
+    home / residential connection - Cloudflare 403s datacenter IPs (incl.
+    GitHub Actions runners) whatever fingerprint we present."""
+    last = "no attempt made"
+    for attempt, imp in enumerate(("chrome131", "chrome124", "edge101")):
+        try:
+            r = requests.get(
+                SITEMAP,
+                impersonate=imp,
+                timeout=45,
+                headers={"Referer": "https://www.odeon.co.uk/"},
+            )
+            if r.status_code == 200 and "<loc>" in r.text:
+                return r.text
+            last = f"HTTP {r.status_code} ({len(r.text)} bytes)"
+        except Exception as exc:  # noqa: BLE001
+            last = repr(exc)
+        if attempt < 2:
+            time.sleep(4)
+    raise RuntimeError(f"sitemap fetch failed after 3 tries - last: {last}")
 
 
 def parse(xml: str):

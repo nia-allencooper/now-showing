@@ -1,55 +1,34 @@
-name: Weekly update
+name: Deploy page
+
+# The scrape runs on a home machine (Cloudflare blocks GitHub's datacenter IPs).
+# That machine commits the new snapshot + rebuilt site/ and pushes; this workflow
+# just publishes site/ to GitHub Pages on that push.
 
 on:
-  schedule:
-    # 19:00 UTC every Tuesday (20:00 UK in summer, 19:00 in winter).
-    # GitHub cron can run up to ~15 min late; adjust the hour if you want it later.
-    - cron: "0 19 * * 2"
+  push:
+    branches: [main]
+    paths: ["site/**"]
   workflow_dispatch: {}
 
 permissions:
-  contents: write   # commit the new snapshot
-  pages: write      # publish the site
+  pages: write
   id-token: write
 
 concurrency:
-  group: now-showing
+  group: pages
   cancel-in-progress: false
 
 jobs:
-  update:
+  deploy:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - run: pip install -r requirements.txt
-
-      - name: Scrape Odeon
-        run: python scrape.py
-
-      - name: Build the page
-        run: python build.py
-
-      - name: Commit the new snapshot
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add snapshots site
-          git commit -m "Update ${{ github.run_number }}: $(date -u +%Y-%m-%d)" || echo "nothing to commit"
-          git push
-
       - uses: actions/configure-pages@v5
-
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
-
       - id: deploy
         uses: actions/deploy-pages@v4
