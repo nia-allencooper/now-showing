@@ -1,0 +1,3 @@
+curl_cffi>=0.7      # browser-TLS-fingerprint HTTP client (gets past Cloudflare for the sitemap)
+jinja2>=3.1         # renders site/index.html from the template
+tzdata>=2024.1      # IANA tz database on Windows (Linux / CI already has it)

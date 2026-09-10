@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Now Showing</title>
+<meta name="description" content="A weekly diff of every film Odeon is listing — what went up on the board, what came down.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  /* ---------- tokens: light ---------- */
+  :root {
+    --bg:        #f4f1e9;
+    --surface:   #fffdf8;
+    --surface-2: #ece6d7;
+    --ink:       #1c1a16;
+    --ink-soft:  #5b554a;
+    --ink-faint: #8f887a;
+    --line:      #d9d2c0;
+    --accent:    #a76c12;
+    --accent-2:  #7c4f0c;
+    --on-accent: #fff8ec;
+    --added:     #2f7d4c;
+    --added-bg:  #e4efe2;
+    --added-line:#bcdcc0;
+    --removed:   #ac3a31;
+    --removed-bg:#f4e1dd;
+    --removed-line:#e6c6bf;
+    --poster-l1: 30%;
+    --poster-l2: 16%;
+    --shadow:    0 1px 2px rgba(28,26,22,.08), 0 8px 24px -12px rgba(28,26,22,.22);
+    --grain-opacity: .30;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:        #0d0e12;
+      --surface:   #15171d;
+      --surface-2: #1d2028;
+      --ink:       #f0ece1;
+      --ink-soft:  #a7a99f;
+      --ink-faint: #6f7178;
+      --line:      #2a2e38;
+      --accent:    #e8b24c;
+      --accent-2:  #f0c477;
+      --on-accent: #1a1204;
+      --added:     #62cf8f;
+      --added-bg:  #16281d;
+      --added-line:#274d36;
+      --removed:   #e46a60;
+      --removed-bg:#2c1a18;
+      --removed-line:#553030;
+      --poster-l1: 26%;
+      --poster-l2: 12%;
+      --shadow:    0 1px 2px rgba(0,0,0,.4), 0 14px 34px -16px rgba(0,0,0,.65);
+      --grain-opacity: .42;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:        #0d0e12;
+    --surface:   #15171d;
+    --surface-2: #1d2028;
+    --ink:       #f0ece1;
+    --ink-soft:  #a7a99f;
+    --ink-faint: #6f7178;
+    --line:      #2a2e38;
+    --accent:    #e8b24c;
+    --accent-2:  #f0c477;
+    --on-accent: #1a1204;
+    --added:     #62cf8f;
+    --added-bg:  #16281d;
+    --added-line:#274d36;
+    --removed:   #e46a60;
+    --removed-bg:#2c1a18;
+    --removed-line:#553030;
+    --poster-l1: 26%;
+    --poster-l2: 12%;
+    --shadow:    0 1px 2px rgba(0,0,0,.4), 0 14px 34px -16px rgba(0,0,0,.65);
+    --grain-opacity: .42;
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; }
+
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9;
+    opacity: var(--grain-opacity);
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 34px 22px 64px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px 24px;
+    padding-bottom: 22px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .brand h1 {
+    font-family: "Oswald", "Arial Narrow", sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.9rem, 5.4vw, 2.7rem);
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: .95;
+    display: inline-flex;
+    align-items: baseline;
+    gap: .08em;
+  }
+  .brand h1 .dot { color: var(--accent); }
+  .brand p {
+    margin: 9px 0 0;
+    color: var(--ink-soft);
+    font-size: .82rem;
+    letter-spacing: .02em;
+    max-width: 46ch;
+  }
+  .brand .unofficial {
+    display: inline-block;
+    margin-top: 11px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .62rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 2px 7px;
+  }
+
+  .aside {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end;
+  }
+  .stamp {
+    font-family: "IBM Plex Mono", monospace;
+    text-align: right;
+  }
+  .stamp small {
+    display: block;
+    font-size: .58rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .stamp strong {
+    font-weight: 600;
+    font-size: .9rem;
+    letter-spacing: .01em;
+  }
+  .theme-toggle {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink-soft);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .62rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 7px 11px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .theme-toggle:hover { color: var(--ink); border-color: var(--ink-faint); }
+
+  /* ---------- summary tiles ---------- */
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 26px 0 8px;
+  }
+  .tile {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 18px 14px;
+    box-shadow: var(--shadow);
+  }
+  .tile .k {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .62rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .tile .v {
+    font-family: "Oswald", "Arial Narrow", sans-serif;
+    font-weight: 600;
+    font-size: clamp(2.1rem, 6.5vw, 3rem);
+    line-height: 1;
+    margin-top: 8px;
+    font-variant-numeric: tabular-nums;
+    display: flex;
+    align-items: baseline;
+    gap: .3em;
+  }
+  .tile .v .sign { font-size: .5em; }
+  .tile.added  .v { color: var(--added); }
+  .tile.removed .v { color: var(--removed); }
+  .tile .note {
+    margin-top: 6px;
+    font-size: .74rem;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- section heading ---------- */
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 42px 0 16px;
+  }
+  .sec-head h2 {
+    font-family: "Oswald", "Arial Narrow", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: clamp(1.15rem, 3.4vw, 1.5rem);
+    margin: 0;
+  }
+  .sec-head .rule { flex: 1; height: 1px; background: var(--line); }
+  .sec-head .count {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .78rem;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- changes ---------- */
+  .changes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .change-col {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .change-col > header {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 15px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .66rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line);
+  }
+  .change-col.add > header { color: var(--added); background: var(--added-bg); border-bottom-color: var(--added-line); }
+  .change-col.rem > header { color: var(--removed); background: var(--removed-bg); border-bottom-color: var(--removed-line); }
+  .change-col > header .pip { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+  .change-col > header .n { margin-left: auto; opacity: .7; }
+  .change-col .empty {
+    padding: 15px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .72rem;
+    color: var(--ink-faint);
+  }
+
+  .crow {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: inherit;
+    border-top: 1px solid var(--line);
+  }
+  .change-col > .crow:first-of-type { border-top: none; }
+  .crow:hover { background: var(--surface-2); }
+  .crow .mini {
+    width: 38px;
+    aspect-ratio: 2/3;
+    border-radius: 2px;
+    flex-shrink: 0;
+    background-color: hsl(var(--h, 30) 42% var(--poster-l1));
+    background-image: linear-gradient(155deg,
+      hsl(var(--h, 30) 42% var(--poster-l1)),
+      hsl(var(--h, 30) 46% var(--poster-l2)));
+    background-size: cover;
+    background-position: center;
+  }
+  .crow .ctitle {
+    flex: 1;
+    min-width: 0;
+    font-weight: 600;
+    font-size: .92rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .crow .arrow { color: var(--ink-faint); font-size: .95rem; }
+  .crow:hover .arrow { color: var(--accent); }
+
+  /* ---------- in theaters ---------- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(138px, 1fr));
+    gap: 20px 14px;
+  }
+  .film { text-decoration: none; color: inherit; display: block; }
+  .poster {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background:
+      radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,.14), transparent 60%),
+      linear-gradient(155deg,
+        hsl(var(--h, 30) 44% var(--poster-l1)),
+        hsl(var(--h, 30) 48% var(--poster-l2)));
+    display: flex;
+    align-items: flex-end;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .film:hover .poster {
+    transform: translateY(-3px);
+    box-shadow: 0 1px 2px rgba(0,0,0,.3), 0 22px 40px -18px rgba(0,0,0,.55);
+  }
+  .poster .scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.74) 4%, rgba(0,0,0,.16) 44%, transparent 70%);
+  }
+  .poster::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    width: 7px;
+    background-image: repeating-linear-gradient(to bottom,
+      rgba(0,0,0,.55) 0 4px, transparent 4px 10px);
+    opacity: .5;
+  }
+  .poster .ptitle {
+    position: relative;
+    font-family: "Oswald", "Arial Narrow", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .015em;
+    line-height: 1.04;
+    color: #fff;
+    font-size: 1.05rem;
+    padding: 12px 12px 13px;
+    text-wrap: balance;
+  }
+
+  /* ---------- footer ---------- */
+  .foot {
+    margin-top: 48px;
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .68rem;
+    color: var(--ink-faint);
+    line-height: 1.8;
+  }
+  .foot a { color: var(--accent-2); }
+  :root[data-theme="dark"] .foot a,
+  :root:not([data-theme="light"]) .foot a { color: var(--accent); }
+
+  @media (max-width: 760px) {
+    .summary { grid-template-columns: 1fr; }
+    .changes { grid-template-columns: 1fr; }
+    .masthead { align-items: flex-start; }
+    .aside { align-items: flex-start; }
+    .stamp { text-align: left; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">
+      <h1>Now Showing<span class="dot">.</span></h1>
+      <p>Every film Odeon is listing, checked once a week — with what went up on the board and what came down since the last check.</p>
+      <br>
+      <span class="unofficial">Unofficial Odeon tracker</span>
+    </div>
+    <div class="aside">
+      <button class="theme-toggle" id="themeBtn" type="button">Theme</button>
+      <div class="stamp">
+        <small>Latest check</small>
+        <strong>{{ this_label }}</strong>
+      </div>
+    </div>
+  </header>
+
+  <section class="summary" aria-label="This check versus last check">
+    <div class="tile">
+      <div class="k">Films listed</div>
+      <div class="v">{{ total }}</div>
+      <div class="note">On Odeon&rsquo;s &ldquo;all films&rdquo; page right now</div>
+    </div>
+    <div class="tile added">
+      <div class="k">Added</div>
+      <div class="v"><span class="sign">+</span>{{ added|length }}</div>
+      <div class="note">
+        {% if prev_label %}New since {{ prev_label }}{% else %}First check &mdash; no baseline yet{% endif %}
+      </div>
+    </div>
+    <div class="tile removed">
+      <div class="k">Removed</div>
+      <div class="v"><span class="sign">&minus;</span>{{ removed|length }}</div>
+      <div class="note">
+        {% if prev_label %}Gone since {{ prev_label }}{% else %}First check &mdash; no baseline yet{% endif %}
+      </div>
+    </div>
+  </section>
+
+  <div class="sec-head">
+    <h2>Director&rsquo;s Cut</h2>
+    <span class="rule"></span>
+    <span class="count">{% if prev_label %}vs. {{ prev_label }}{% else %}first check{% endif %}</span>
+  </div>
+
+  <div class="changes">
+    <div class="change-col add">
+      <header><span class="pip"></span>Added<span class="n">{{ added|length }}</span></header>
+      {% for f in added %}
+      <a class="crow" href="{{ f.url }}" target="_blank" rel="noopener"
+         style="--h: {{ f.hue }};{% if f.poster %} background-image: none;{% endif %}">
+        <span class="mini"{% if f.poster %} style="background-image: url('{{ f.poster }}')"{% endif %}></span>
+        <span class="ctitle">{{ f.title }}</span>
+        <span class="arrow">&#8599;</span>
+      </a>
+      {% else %}
+      <div class="empty">
+        {% if is_first_run %}Nothing to compare yet.{% else %}No films added this week.{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="change-col rem">
+      <header><span class="pip"></span>Removed<span class="n">{{ removed|length }}</span></header>
+      {% for f in removed %}
+      <a class="crow" href="{{ f.url }}" target="_blank" rel="noopener" style="--h: {{ f.hue }}">
+        <span class="mini"{% if f.poster %} style="background-image: url('{{ f.poster }}')"{% endif %}></span>
+        <span class="ctitle">{{ f.title }}</span>
+        <span class="arrow">&#8599;</span>
+      </a>
+      {% else %}
+      <div class="empty">
+        {% if is_first_run %}Nothing to compare yet.{% else %}No films removed this week.{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="sec-head">
+    <h2>In Theaters</h2>
+    <span class="rule"></span>
+    <span class="count">{{ films|length }} listed</span>
+  </div>
+
+  <div class="grid">
+    {% for f in films %}
+    <a class="film" href="{{ f.url }}" target="_blank" rel="noopener" style="--h: {{ f.hue }}">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">{{ f.title }}</span></span>
+    </a>
+    {% endfor %}
+  </div>
+
+  <footer class="foot">
+    <p>Checked every Tuesday evening against <a href="https://www.odeon.co.uk/films/">odeon.co.uk/films</a> &mdash; after Odeon finalise the coming week&rsquo;s schedule.</p>
+    <p>Titles come from Odeon&rsquo;s sitemap. Page built {{ generated_at }}. Not affiliated with Odeon.</p>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    "use strict";
+    var btn = document.getElementById("themeBtn");
+    var order = ["system", "light", "dark"];
+    var cur = 0;
+    try {
+      var saved = localStorage.getItem("ns-theme");
+      if (saved) cur = Math.max(0, order.indexOf(saved));
+    } catch (e) {}
+    function apply() {
+      var m = order[cur];
+      if (m === "system") document.documentElement.removeAttribute("data-theme");
+      else document.documentElement.setAttribute("data-theme", m);
+      btn.textContent = "Theme · " + m;
+      try { localStorage.setItem("ns-theme", m); } catch (e) {}
+    }
+    btn.addEventListener("click", function () {
+      cur = (cur + 1) % order.length;
+      apply();
+    });
+    apply();
+  })();
+</script>
+</body>
+</html>

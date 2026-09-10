@@ -1,0 +1,999 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Now Showing</title>
+<meta name="description" content="A weekly diff of every film Odeon is listing — what went up on the board, what came down.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  /* ---------- tokens: light ---------- */
+  :root {
+    --bg:        #f4f1e9;
+    --surface:   #fffdf8;
+    --surface-2: #ece6d7;
+    --ink:       #1c1a16;
+    --ink-soft:  #5b554a;
+    --ink-faint: #8f887a;
+    --line:      #d9d2c0;
+    --accent:    #a76c12;
+    --accent-2:  #7c4f0c;
+    --on-accent: #fff8ec;
+    --added:     #2f7d4c;
+    --added-bg:  #e4efe2;
+    --added-line:#bcdcc0;
+    --removed:   #ac3a31;
+    --removed-bg:#f4e1dd;
+    --removed-line:#e6c6bf;
+    --poster-l1: 30%;
+    --poster-l2: 16%;
+    --shadow:    0 1px 2px rgba(28,26,22,.08), 0 8px 24px -12px rgba(28,26,22,.22);
+    --grain-opacity: .30;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:        #0d0e12;
+      --surface:   #15171d;
+      --surface-2: #1d2028;
+      --ink:       #f0ece1;
+      --ink-soft:  #a7a99f;
+      --ink-faint: #6f7178;
+      --line:      #2a2e38;
+      --accent:    #e8b24c;
+      --accent-2:  #f0c477;
+      --on-accent: #1a1204;
+      --added:     #62cf8f;
+      --added-bg:  #16281d;
+      --added-line:#274d36;
+      --removed:   #e46a60;
+      --removed-bg:#2c1a18;
+      --removed-line:#553030;
+      --poster-l1: 26%;
+      --poster-l2: 12%;
+      --shadow:    0 1px 2px rgba(0,0,0,.4), 0 14px 34px -16px rgba(0,0,0,.65);
+      --grain-opacity: .42;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:        #0d0e12;
+    --surface:   #15171d;
+    --surface-2: #1d2028;
+    --ink:       #f0ece1;
+    --ink-soft:  #a7a99f;
+    --ink-faint: #6f7178;
+    --line:      #2a2e38;
+    --accent:    #e8b24c;
+    --accent-2:  #f0c477;
+    --on-accent: #1a1204;
+    --added:     #62cf8f;
+    --added-bg:  #16281d;
+    --added-line:#274d36;
+    --removed:   #e46a60;
+    --removed-bg:#2c1a18;
+    --removed-line:#553030;
+    --poster-l1: 26%;
+    --poster-l2: 12%;
+    --shadow:    0 1px 2px rgba(0,0,0,.4), 0 14px 34px -16px rgba(0,0,0,.65);
+    --grain-opacity: .42;
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; }
+
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9;
+    opacity: var(--grain-opacity);
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 34px 22px 64px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px 24px;
+    padding-bottom: 22px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .brand h1 {
+    font-family: "Oswald", "Arial Narrow", sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.9rem, 5.4vw, 2.7rem);
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: .95;
+    display: inline-flex;
+    align-items: baseline;
+    gap: .08em;
+  }
+  .brand h1 .dot { color: var(--accent); }
+  .brand p {
+    margin: 9px 0 0;
+    color: var(--ink-soft);
+    font-size: .82rem;
+    letter-spacing: .02em;
+    max-width: 46ch;
+  }
+  .brand .unofficial {
+    display: inline-block;
+    margin-top: 11px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .62rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 2px 7px;
+  }
+
+  .aside {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end;
+  }
+  .stamp {
+    font-family: "IBM Plex Mono", monospace;
+    text-align: right;
+  }
+  .stamp small {
+    display: block;
+    font-size: .58rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .stamp strong {
+    font-weight: 600;
+    font-size: .9rem;
+    letter-spacing: .01em;
+  }
+  .theme-toggle {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink-soft);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .62rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 7px 11px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .theme-toggle:hover { color: var(--ink); border-color: var(--ink-faint); }
+
+  /* ---------- summary tiles ---------- */
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 26px 0 8px;
+  }
+  .tile {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 18px 14px;
+    box-shadow: var(--shadow);
+  }
+  .tile .k {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .62rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .tile .v {
+    font-family: "Oswald", "Arial Narrow", sans-serif;
+    font-weight: 600;
+    font-size: clamp(2.1rem, 6.5vw, 3rem);
+    line-height: 1;
+    margin-top: 8px;
+    font-variant-numeric: tabular-nums;
+    display: flex;
+    align-items: baseline;
+    gap: .3em;
+  }
+  .tile .v .sign { font-size: .5em; }
+  .tile.added  .v { color: var(--added); }
+  .tile.removed .v { color: var(--removed); }
+  .tile .note {
+    margin-top: 6px;
+    font-size: .74rem;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- section heading ---------- */
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 42px 0 16px;
+  }
+  .sec-head h2 {
+    font-family: "Oswald", "Arial Narrow", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: clamp(1.15rem, 3.4vw, 1.5rem);
+    margin: 0;
+  }
+  .sec-head .rule { flex: 1; height: 1px; background: var(--line); }
+  .sec-head .count {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .78rem;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- changes ---------- */
+  .changes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .change-col {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .change-col > header {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 15px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .66rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line);
+  }
+  .change-col.add > header { color: var(--added); background: var(--added-bg); border-bottom-color: var(--added-line); }
+  .change-col.rem > header { color: var(--removed); background: var(--removed-bg); border-bottom-color: var(--removed-line); }
+  .change-col > header .pip { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+  .change-col > header .n { margin-left: auto; opacity: .7; }
+  .change-col .empty {
+    padding: 15px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .72rem;
+    color: var(--ink-faint);
+  }
+
+  .crow {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: inherit;
+    border-top: 1px solid var(--line);
+  }
+  .change-col > .crow:first-of-type { border-top: none; }
+  .crow:hover { background: var(--surface-2); }
+  .crow .mini {
+    width: 38px;
+    aspect-ratio: 2/3;
+    border-radius: 2px;
+    flex-shrink: 0;
+    background-color: hsl(var(--h, 30) 42% var(--poster-l1));
+    background-image: linear-gradient(155deg,
+      hsl(var(--h, 30) 42% var(--poster-l1)),
+      hsl(var(--h, 30) 46% var(--poster-l2)));
+    background-size: cover;
+    background-position: center;
+  }
+  .crow .ctitle {
+    flex: 1;
+    min-width: 0;
+    font-weight: 600;
+    font-size: .92rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .crow .arrow { color: var(--ink-faint); font-size: .95rem; }
+  .crow:hover .arrow { color: var(--accent); }
+
+  /* ---------- in theaters ---------- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(138px, 1fr));
+    gap: 20px 14px;
+  }
+  .film { text-decoration: none; color: inherit; display: block; }
+  .poster {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background:
+      radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,.14), transparent 60%),
+      linear-gradient(155deg,
+        hsl(var(--h, 30) 44% var(--poster-l1)),
+        hsl(var(--h, 30) 48% var(--poster-l2)));
+    display: flex;
+    align-items: flex-end;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .film:hover .poster {
+    transform: translateY(-3px);
+    box-shadow: 0 1px 2px rgba(0,0,0,.3), 0 22px 40px -18px rgba(0,0,0,.55);
+  }
+  .poster .scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.74) 4%, rgba(0,0,0,.16) 44%, transparent 70%);
+  }
+  .poster::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    width: 7px;
+    background-image: repeating-linear-gradient(to bottom,
+      rgba(0,0,0,.55) 0 4px, transparent 4px 10px);
+    opacity: .5;
+  }
+  .poster .ptitle {
+    position: relative;
+    font-family: "Oswald", "Arial Narrow", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .015em;
+    line-height: 1.04;
+    color: #fff;
+    font-size: 1.05rem;
+    padding: 12px 12px 13px;
+    text-wrap: balance;
+  }
+
+  /* ---------- footer ---------- */
+  .foot {
+    margin-top: 48px;
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .68rem;
+    color: var(--ink-faint);
+    line-height: 1.8;
+  }
+  .foot a { color: var(--accent-2); }
+  :root[data-theme="dark"] .foot a,
+  :root:not([data-theme="light"]) .foot a { color: var(--accent); }
+
+  @media (max-width: 760px) {
+    .summary { grid-template-columns: 1fr; }
+    .changes { grid-template-columns: 1fr; }
+    .masthead { align-items: flex-start; }
+    .aside { align-items: flex-start; }
+    .stamp { text-align: left; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">
+      <h1>Now Showing<span class="dot">.</span></h1>
+      <p>Every film Odeon is listing, checked once a week — with what went up on the board and what came down since the last check.</p>
+      <br>
+      <span class="unofficial">Unofficial Odeon tracker</span>
+    </div>
+    <div class="aside">
+      <button class="theme-toggle" id="themeBtn" type="button">Theme</button>
+      <div class="stamp">
+        <small>Latest check</small>
+        <strong>Thursday 10 September 2026</strong>
+      </div>
+    </div>
+  </header>
+
+  <section class="summary" aria-label="This check versus last check">
+    <div class="tile">
+      <div class="k">Films listed</div>
+      <div class="v">164</div>
+      <div class="note">On Odeon&rsquo;s &ldquo;all films&rdquo; page right now</div>
+    </div>
+    <div class="tile added">
+      <div class="k">Added</div>
+      <div class="v"><span class="sign">+</span>0</div>
+      <div class="note">
+First check &mdash; no baseline yet      </div>
+    </div>
+    <div class="tile removed">
+      <div class="k">Removed</div>
+      <div class="v"><span class="sign">&minus;</span>0</div>
+      <div class="note">
+First check &mdash; no baseline yet      </div>
+    </div>
+  </section>
+
+  <div class="sec-head">
+    <h2>Director&rsquo;s Cut</h2>
+    <span class="rule"></span>
+    <span class="count">first check</span>
+  </div>
+
+  <div class="changes">
+    <div class="change-col add">
+      <header><span class="pip"></span>Added<span class="n">0</span></header>
+      <div class="empty">
+Nothing to compare yet.      </div>
+    </div>
+    <div class="change-col rem">
+      <header><span class="pip"></span>Removed<span class="n">0</span></header>
+      <div class="empty">
+Nothing to compare yet.      </div>
+    </div>
+  </div>
+
+  <div class="sec-head">
+    <h2>In Theaters</h2>
+    <span class="rule"></span>
+    <span class="count">164 listed</span>
+  </div>
+
+  <div class="grid">
+    <a class="film" href="https://www.odeon.co.uk/films/always-lalisa/HO00009446/" target="_blank" rel="noopener" style="--h: 265">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Always Lalisa</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/andre-rieu-2026-christmas-concert-let-it-snow/HO00009249/" target="_blank" rel="noopener" style="--h: 136">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Andre Rieu 2026 Christmas Concert Let It Snow</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/arrietty-dubbed/HO00009456/" target="_blank" rel="noopener" style="--h: 116">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Arrietty Dubbed</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/arrietty-subbed/HO00009455/" target="_blank" rel="noopener" style="--h: 221">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Arrietty Subbed</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/avengers-doomsday/HO00009221/" target="_blank" rel="noopener" style="--h: 101">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Avengers Doomsday</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/avengers-endgame-encore/HO00009368/" target="_blank" rel="noopener" style="--h: 54">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Avengers Endgame Encore</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/awarapan-2/HO00009333/" target="_blank" rel="noopener" style="--h: 53">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Awarapan 2</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/bad-apples/HO00009364/" target="_blank" rel="noopener" style="--h: 308">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Bad Apples</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/bethlehem-kudumba-unit-malayalam/HO00009253/" target="_blank" rel="noopener" style="--h: 106">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Bethlehem Kudumba Unit Malayalam</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/bing-friends-birthday-celebration/HO00006202/" target="_blank" rel="noopener" style="--h: 146">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Bing Friends Birthday Celebration</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/bol-bhavein-na-bol/HO00009412/" target="_blank" rel="noopener" style="--h: 132">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Bol Bhavein Na Bol</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/catvideofest-2026/HO00009427/" target="_blank" rel="noopener" style="--h: 13">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Catvideofest 2026</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/cbeebies-musical-the-great-ice-cream-hunt/HO00007356/" target="_blank" rel="noopener" style="--h: 212">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Cbeebies Musical the Great Ice Cream Hunt</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/celtic-utopia/HO00009407/" target="_blank" rel="noopener" style="--h: 204">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Celtic Utopia</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/clayface/HO00008897/" target="_blank" rel="noopener" style="--h: 342">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Clayface</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/conferencing-3-hour/HO00001426/" target="_blank" rel="noopener" style="--h: 112">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Conferencing 3 Hour</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/coyote-vs-acme/HO00009141/" target="_blank" rel="noopener" style="--h: 8">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Coyote vs Acme</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/coyote-vs-acme/HO00009152/" target="_blank" rel="noopener" style="--h: 8">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Coyote vs Acme</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/de-gaulle-resistance/HO00009356/" target="_blank" rel="noopener" style="--h: 256">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">De Gaulle Resistance</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/digger/HO00009261/" target="_blank" rel="noopener" style="--h: 114">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Digger</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/disneys-hexed/HO00009109/" target="_blank" rel="noopener" style="--h: 1">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Disneys Hexed</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/dune-part-three/HO00009199/" target="_blank" rel="noopener" style="--h: 201">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Dune Part Three</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/eddie-cochran-don-t-forget-me/HO00009400/" target="_blank" rel="noopener" style="--h: 73">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Eddie Cochran Don T Forget Me</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/english-national-ballet-the-sleeping-beauty/HO00009335/" target="_blank" rel="noopener" style="--h: 334">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">English National Ballet the Sleeping Beauty</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/enhypen-vr-concert-destiny/HO00009420/" target="_blank" rel="noopener" style="--h: 197">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Enhypen Vr Concert Destiny</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/epic-first-semester/HO00009443/" target="_blank" rel="noopener" style="--h: 99">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Epic First Semester</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/exhibition-on-screen-james-mcneill-whistler/HO00009285/" target="_blank" rel="noopener" style="--h: 156">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Exhibition on Screen James Mcneill Whistler</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/fall-2/HO00009083/" target="_blank" rel="noopener" style="--h: 165">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Fall 2</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/fallen-angels-by-noel-coward/HO00009233/" target="_blank" rel="noopener" style="--h: 209">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Fallen Angels by Noel Coward</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/fight-like-a-girl-plus-recorded-qa/HO00009448/" target="_blank" rel="noopener" style="--h: 190">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Fight Like a Girl Plus Recorded Qa</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/focker-in-law/HO00008853/" target="_blank" rel="noopener" style="--h: 273">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Focker in Law</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/forgotten-island/HO00008794/" target="_blank" rel="noopener" style="--h: 147">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Forgotten Island</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/gail-daughtry-and-the-celebrity-sex-pass/HO00009404/" target="_blank" rel="noopener" style="--h: 83">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Gail Daughtry and the Celebrity Sex Pass</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/ghosts-the-possession-of-button-house/HO00008986/" target="_blank" rel="noopener" style="--h: 16">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Ghosts the Possession of Button House</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/giant-the-play/HO00009162/" target="_blank" rel="noopener" style="--h: 150">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Giant the Play</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/guggi/HO00009340/" target="_blank" rel="noopener" style="--h: 19">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Guggi</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/hadestown-the-musical/HO00009329/" target="_blank" rel="noopener" style="--h: 4">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Hadestown the Musical</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/haiwaan/HO00009437/" target="_blank" rel="noopener" style="--h: 127">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Haiwaan</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/harry-potter-and-the-chamber-of-secrets/HO00009299/" target="_blank" rel="noopener" style="--h: 128">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Harry Potter and the Chamber of Secrets</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/harry-potter-and-the-deathly-hallows-part-1/HO00009307/" target="_blank" rel="noopener" style="--h: 309">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Harry Potter and the Deathly Hallows Part 1</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/harry-potter-and-the-deathly-hallows-part-2/HO00009310/" target="_blank" rel="noopener" style="--h: 310">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Harry Potter and the Deathly Hallows Part 2</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/harry-potter-and-the-goblet-of-fire/HO00009303/" target="_blank" rel="noopener" style="--h: 244">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Harry Potter and the Goblet of Fire</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/harry-potter-and-the-half-blood-prince/HO00009309/" target="_blank" rel="noopener" style="--h: 280">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Harry Potter and the Half Blood Prince</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/harry-potter-and-the-order-of-the-phoenix/HO00009305/" target="_blank" rel="noopener" style="--h: 301">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Harry Potter and the Order of the Phoenix</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/harry-potter-and-the-prisoner-of-azkaban/HO00009301/" target="_blank" rel="noopener" style="--h: 315">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Harry Potter and the Prisoner of Azkaban</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/heart-of-the-beast/HO00009115/" target="_blank" rel="noopener" style="--h: 65">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Heart of the Beast</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/hope/HO00009435/" target="_blank" rel="noopener" style="--h: 156">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Hope</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/hoppers/HO00008213/" target="_blank" rel="noopener" style="--h: 167">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Hoppers</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/how-to-rob-a-bank/HO00009031/" target="_blank" rel="noopener" style="--h: 75">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">How to Rob a Bank</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/hunger-games-ballad-of-songbirdssnakes-2026/HO00009294/" target="_blank" rel="noopener" style="--h: 185">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Hunger Games Ballad of Songbirdssnakes 2026</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/i-want-your-sex/HO00009343/" target="_blank" rel="noopener" style="--h: 114">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">I Want Your Sex</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/im-game-malayalam/HO00009251/" target="_blank" rel="noopener" style="--h: 245">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Im Game Malayalam</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/insidious-out-of-the-further/HO00008899/" target="_blank" rel="noopener" style="--h: 201">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Insidious Out of the Further</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/iu-concert-the-golden-hour-re-release/HO00009428/" target="_blank" rel="noopener" style="--h: 324">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Iu Concert the Golden Hour Re Release</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/iu-concert-the-winning-re-release/HO00009429/" target="_blank" rel="noopener" style="--h: 127">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Iu Concert the Winning Re Release</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/judaa/HO00009352/" target="_blank" rel="noopener" style="--h: 185">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Judaa</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/kikis-delivery-service-sub/HO00009202/" target="_blank" rel="noopener" style="--h: 298">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Kikis Delivery Service Sub</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/klara-and-the-sun/HO00009139/" target="_blank" rel="noopener" style="--h: 355">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Klara and the Sun</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/kuzma/HO00009419/" target="_blank" rel="noopener" style="--h: 220">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Kuzma</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/la-la-land-10th-anniversary-re-release/HO00009215/" target="_blank" rel="noopener" style="--h: 322">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">La La Land 10TH Anniversary Re Release</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/late-fame/HO00009406/" target="_blank" rel="noopener" style="--h: 349">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Late Fame</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/leviticus/HO00009226/" target="_blank" rel="noopener" style="--h: 232">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Leviticus</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/linkin-park-unshatter/HO00009284/" target="_blank" rel="noopener" style="--h: 203">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Linkin Park Unshatter</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/mandaadi/HO00009415/" target="_blank" rel="noopener" style="--h: 183">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Mandaadi</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/met-opera-2026-27-cosi-fan-tutte/HO00009048/" target="_blank" rel="noopener" style="--h: 135">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Met Opera 2026 27 Cosi Fan Tutte</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/met-opera-2026-27-la-fanciulla-del-west/HO00008942/" target="_blank" rel="noopener" style="--h: 348">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Met Opera 2026 27 La Fanciulla Del West</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/met-opera-2026-27-macbeth/HO00008941/" target="_blank" rel="noopener" style="--h: 64">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Met Opera 2026 27 Macbeth</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/met-opera-2026-27-manon/HO00009051/" target="_blank" rel="noopener" style="--h: 147">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Met Opera 2026 27 Manon</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/met-opera-2026-27-otello/HO00009052/" target="_blank" rel="noopener" style="--h: 85">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Met Opera 2026 27 Otello</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/met-opera-2026-27-parsifal/HO00009053/" target="_blank" rel="noopener" style="--h: 40">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Met Opera 2026 27 Parsifal</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/met-opera-2026-27-samson-et-dalila/HO00009049/" target="_blank" rel="noopener" style="--h: 49">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Met Opera 2026 27 Samson Et Dalila</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/met-opera-2026-27-silent-night/HO00009050/" target="_blank" rel="noopener" style="--h: 323">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Met Opera 2026 27 Silent Night</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/michael/HO00008527/" target="_blank" rel="noopener" style="--h: 271">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Michael</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/minions-monsters/HO00008565/" target="_blank" rel="noopener" style="--h: 124">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Minions Monsters</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/mirzapur-the-movie/HO00009409/" target="_blank" rel="noopener" style="--h: 105">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Mirzapur the Movie</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/mission-santa/HO00009085/" target="_blank" rel="noopener" style="--h: 313">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Mission Santa</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/moana/HO00008415/" target="_blank" rel="noopener" style="--h: 42">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Moana</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/mutiny/HO00009313/" target="_blank" rel="noopener" style="--h: 16">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Mutiny</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/national-theatre-live-golden-boy/HO00009338/" target="_blank" rel="noopener" style="--h: 26">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">National Theatre Live Golden Boy</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/national-theatre-live-les-liaisons-dangereuses/HO00008186/" target="_blank" rel="noopener" style="--h: 47">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">National Theatre Live Les Liaisons Dangereuses</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/national-theatre-live-the-misanthrope/HO00009033/" target="_blank" rel="noopener" style="--h: 70">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">National Theatre Live the Misanthrope</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/nct-127-neo-city-seoul-the-redline/HO00009401/" target="_blank" rel="noopener" style="--h: 96">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Nct 127 Neo City Seoul the Redline</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/north-sea-nature-untamed/HO00009317/" target="_blank" rel="noopener" style="--h: 81">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">North Sea Nature Untamed</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/oasis-dont-look-back-in-anger/HO00009281/" target="_blank" rel="noopener" style="--h: 38">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Oasis Dont Look Back in Anger</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/obsession/HO00008744/" target="_blank" rel="noopener" style="--h: 139">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Obsession</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/odeon-pride-nights-a-wolf-among-the-swans/HO00009396/" target="_blank" rel="noopener" style="--h: 4">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Odeon Pride Nights a Wolf Among the Swans</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/odeon-pride-nights-polarized/HO00009394/" target="_blank" rel="noopener" style="--h: 346">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Odeon Pride Nights Polarized</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/odeon-pride-nights-rains-over-babel/HO00009395/" target="_blank" rel="noopener" style="--h: 83">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Odeon Pride Nights Rains Over Babel</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/odeon-pride-nights-we-will-find-happiness/HO00009397/" target="_blank" rel="noopener" style="--h: 224">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Odeon Pride Nights We Will Find Happiness</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/one-night-only/HO00008901/" target="_blank" rel="noopener" style="--h: 198">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">One Night Only</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/other-mommy/HO00009433/" target="_blank" rel="noopener" style="--h: 23">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Other Mommy</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/paw-patrol-the-dino-movie/HO00008836/" target="_blank" rel="noopener" style="--h: 327">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Paw Patrol the Dino Movie</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/practical-magic-2/HO00009244/" target="_blank" rel="noopener" style="--h: 220">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Practical Magic 2</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/pradhama-drishtiya-kuttakkar/HO00009438/" target="_blank" rel="noopener" style="--h: 23">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Pradhama Drishtiya Kuttakkar</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/premature/HO00009342/" target="_blank" rel="noopener" style="--h: 259">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Premature</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/pressure/HO00008792/" target="_blank" rel="noopener" style="--h: 77">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Pressure</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/queen-budapest/HO00009372/" target="_blank" rel="noopener" style="--h: 196">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Queen Budapest</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/radiohead-x-nosferatu-a-symphony-of-horror/HO00009165/" target="_blank" rel="noopener" style="--h: 225">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Radiohead X Nosferatu a Symphony of Horror</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/raiders-of-the-lost-ark-45th-anniversary/HO00008966/" target="_blank" rel="noopener" style="--h: 275">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Raiders of the Lost Ark 45TH Anniversary</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/rbo-2026-27-alices-adventures-in-wonderland/HO00008953/" target="_blank" rel="noopener" style="--h: 243">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Rbo 2026 27 Alices Adventures in Wonderland</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/rbo-cinema-season-2026-27-carmen/HO00008945/" target="_blank" rel="noopener" style="--h: 102">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Rbo Cinema Season 2026 27 Carmen</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/rbo-cinema-season-2026-27-cosi-fan-tutte/HO00008951/" target="_blank" rel="noopener" style="--h: 357">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Rbo Cinema Season 2026 27 Cosi Fan Tutte</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/rbo-cinema-season-2026-27-gotterdammerung/HO00008949/" target="_blank" rel="noopener" style="--h: 283">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Rbo Cinema Season 2026 27 Gotterdammerung</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/rbo-cinema-season-2026-27-manon/HO00008943/" target="_blank" rel="noopener" style="--h: 189">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Rbo Cinema Season 2026 27 Manon</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/rbo-cinema-season-2026-27-romeo-and-juliet/HO00008959/" target="_blank" rel="noopener" style="--h: 290">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Rbo Cinema Season 2026 27 Romeo and Juliet</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/rbo-cinema-season-2026-27-swan-lake/HO00008955/" target="_blank" rel="noopener" style="--h: 146">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Rbo Cinema Season 2026 27 Swan Lake</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/rbo-cinema-season-2026-27-the-nutcracker/HO00008947/" target="_blank" rel="noopener" style="--h: 149">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Rbo Cinema Season 2026 27 the Nutcracker</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/rbo-cinema-season-2026-27-tosca/HO00008957/" target="_blank" rel="noopener" style="--h: 250">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Rbo Cinema Season 2026 27 Tosca</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/resident-evil/HO00009025/" target="_blank" rel="noopener" style="--h: 332">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Resident Evil</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/rise-of-the-footsoldier-retribution/HO00009230/" target="_blank" rel="noopener" style="--h: 162">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Rise of the Footsoldier Retribution</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/romanchakam/HO00009387/" target="_blank" rel="noopener" style="--h: 192">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Romanchakam</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/runner/HO00009348/" target="_blank" rel="noopener" style="--h: 64">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Runner</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/sarah-duck-on-the-big-screen/HO00009259/" target="_blank" rel="noopener" style="--h: 10">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Sarah Duck on the Big Screen</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/sardar-2-tamil/HO00009414/" target="_blank" rel="noopener" style="--h: 22">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Sardar 2 Tamil</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/sardar-2-telugu/HO00009413/" target="_blank" rel="noopener" style="--h: 149">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Sardar 2 Telugu</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/sb19-wakas-at-simulathe-trilogy-concert-finale/HO00009457/" target="_blank" rel="noopener" style="--h: 290">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Sb19 Wakas at Simulathe Trilogy Concert Finale</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/sense-and-sensibility/HO00009362/" target="_blank" rel="noopener" style="--h: 8">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Sense and Sensibility</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/shaun-the-sheep-the-beast-of-mossy-bottom/HO00008754/" target="_blank" rel="noopener" style="--h: 94">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Shaun the Sheep the Beast of Mossy Bottom</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/singh-vs-kaur-2/HO00009441/" target="_blank" rel="noopener" style="--h: 177">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Singh vs Kaur 2</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/sinners/HO00006623/" target="_blank" rel="noopener" style="--h: 288">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Sinners</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/spa-weekend/HO00009111/" target="_blank" rel="noopener" style="--h: 131">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Spa Weekend</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/spider-man-brand-new-day/HO00008728/" target="_blank" rel="noopener" style="--h: 58">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Spider Man Brand New Day</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/stop-that-train/HO00009331/" target="_blank" rel="noopener" style="--h: 317">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Stop That Train</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/take-it-or-leave-it/HO00009423/" target="_blank" rel="noopener" style="--h: 53">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Take It or Leave It</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/teenage-sex-and-death-at-camp-miasma/HO00009346/" target="_blank" rel="noopener" style="--h: 214">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Teenage Sex and Death at Camp Miasma</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/teenage-sex-death-at-camp-miasma-spotlight/HO00009398/" target="_blank" rel="noopener" style="--h: 145">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Teenage Sex Death at Camp Miasma Spotlight</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/terminator-2-judgment-day-35th-anniversary/HO00008903/" target="_blank" rel="noopener" style="--h: 247">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Terminator 2 Judgment Day 35TH Anniversary</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-angry-birds-movie-3/HO00009378/" target="_blank" rel="noopener" style="--h: 343">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Angry Birds Movie 3</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-cat-in-the-hat/HO00008223/" target="_blank" rel="noopener" style="--h: 138">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Cat in the Hat</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-death-of-robin-hood/HO00008819/" target="_blank" rel="noopener" style="--h: 216">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Death of Robin Hood</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-dog-stars/HO00008910/" target="_blank" rel="noopener" style="--h: 350">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Dog Stars</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-end-of-oak-street/HO00008790/" target="_blank" rel="noopener" style="--h: 143">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The End of Oak Street</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-fast-and-the-furious-25th-anniversary/HO00009113/" target="_blank" rel="noopener" style="--h: 325">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Fast and the Furious 25TH Anniversary</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-gruffalo-plus-the-gruffalos-child/HO00009336/" target="_blank" rel="noopener" style="--h: 103">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Gruffalo Plus the Gruffalos Child</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-hunger-games-2026/HO00009286/" target="_blank" rel="noopener" style="--h: 287">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Hunger Games 2026</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-hunger-games-catching-fire-2026/HO00009288/" target="_blank" rel="noopener" style="--h: 72">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Hunger Games Catching Fire 2026</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-hunger-games-mockingjay-part-1-2026/HO00009290/" target="_blank" rel="noopener" style="--h: 45">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Hunger Games Mockingjay Part 1 2026</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-hunger-games-mockingjay-part-2-2026/HO00009293/" target="_blank" rel="noopener" style="--h: 196">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Hunger Games Mockingjay Part 2 2026</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-hunger-games-sunrise-on-the-reaping/HO00008470/" target="_blank" rel="noopener" style="--h: 288">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Hunger Games Sunrise on the Reaping</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-incomer/HO00009402/" target="_blank" rel="noopener" style="--h: 18">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Incomer</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-invite/HO00009072/" target="_blank" rel="noopener" style="--h: 224">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Invite</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-odyssey/HO00008916/" target="_blank" rel="noopener" style="--h: 113">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Odyssey</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-odyssey-70mm/HO00009035/" target="_blank" rel="noopener" style="--h: 192">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Odyssey 70MM</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-paradise-telugu/HO00009454/" target="_blank" rel="noopener" style="--h: 82">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Paradise Telugu</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-passion-of-the-christ-2026/HO00009370/" target="_blank" rel="noopener" style="--h: 349">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Passion of the Christ 2026</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-pout-pout-fish/HO00008963/" target="_blank" rel="noopener" style="--h: 7">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Pout Pout Fish</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-route-to-cappyness/HO00009449/" target="_blank" rel="noopener" style="--h: 259">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Route to Cappyness</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-sheep-detectives/HO00008411/" target="_blank" rel="noopener" style="--h: 34">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Sheep Detectives</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-super-mario-galaxy-movie/HO00008216/" target="_blank" rel="noopener" style="--h: 264">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Super Mario Galaxy Movie</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-transformers-the-movie-40th-anniversary/HO00009275/" target="_blank" rel="noopener" style="--h: 94">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Transformers the Movie 40TH Anniversary</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/the-uprising/HO00009431/" target="_blank" rel="noopener" style="--h: 0">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">The Uprising</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/tony/HO00009176/" target="_blank" rel="noopener" style="--h: 126">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Tony</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/toy-story-5/HO00008218/" target="_blank" rel="noopener" style="--h: 168">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Toy Story 5</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/tuner/HO00008742/" target="_blank" rel="noopener" style="--h: 346">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Tuner</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/twenty-years-of-the-met-in-cinemas/HO00009047/" target="_blank" rel="noopener" style="--h: 106">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Twenty Years of the Met in Cinemas</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/unidentified-murder-cantonese/HO00009417/" target="_blank" rel="noopener" style="--h: 95">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Unidentified Murder Cantonese</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/verity/HO00008961/" target="_blank" rel="noopener" style="--h: 163">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Verity</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/violent-night-2/HO00009376/" target="_blank" rel="noopener" style="--h: 37">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Violent Night 2</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/virginia-woolf-s-night-day/HO00009063/" target="_blank" rel="noopener" style="--h: 286">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Virginia Woolf&#39;s Night Day</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/whalefall/HO00009117/" target="_blank" rel="noopener" style="--h: 12">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Whalefall</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/whisper-of-the-heart-dub/HO00009359/" target="_blank" rel="noopener" style="--h: 173">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Whisper of the Heart Dub</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/whisper-of-the-heart-sub/HO00009358/" target="_blank" rel="noopener" style="--h: 188">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Whisper of the Heart Sub</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/wild-horse-nine/HO00008756/" target="_blank" rel="noopener" style="--h: 291">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Wild Horse Nine</span></span>
+    </a>
+    <a class="film" href="https://www.odeon.co.uk/films/wildwood/HO00008905/" target="_blank" rel="noopener" style="--h: 151">
+      <span class="poster"><span class="scrim"></span><span class="ptitle">Wildwood</span></span>
+    </a>
+  </div>
+
+  <footer class="foot">
+    <p>Checked every Tuesday evening against <a href="https://www.odeon.co.uk/films/">odeon.co.uk/films</a> &mdash; after Odeon finalise the coming week&rsquo;s schedule.</p>
+    <p>Titles come from Odeon&rsquo;s sitemap. Page built 2026-09-10 12:15 UTC. Not affiliated with Odeon.</p>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    "use strict";
+    var btn = document.getElementById("themeBtn");
+    var order = ["system", "light", "dark"];
+    var cur = 0;
+    try {
+      var saved = localStorage.getItem("ns-theme");
+      if (saved) cur = Math.max(0, order.indexOf(saved));
+    } catch (e) {}
+    function apply() {
+      var m = order[cur];
+      if (m === "system") document.documentElement.removeAttribute("data-theme");
+      else document.documentElement.setAttribute("data-theme", m);
+      btn.textContent = "Theme · " + m;
+      try { localStorage.setItem("ns-theme", m); } catch (e) {}
+    }
+    btn.addEventListener("click", function () {
+      cur = (cur + 1) % order.length;
+      apply();
+    });
+    apply();
+  })();
+</script>
+</body>
+</html>
