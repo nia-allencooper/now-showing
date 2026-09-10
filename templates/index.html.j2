@@ -27,6 +27,10 @@
     --removed:   #ac3a31;
     --removed-bg:#f4e1dd;
     --removed-line:#e6c6bf;
+    --st-watch:  #2f6ab0;   /* watchlist - blue  */
+    --st-book:   #b0781a;   /* booked    - amber */
+    --st-seen:   #2f7d4c;   /* seen      - green */
+    --st-skip:   #ac3a31;   /* skip      - red   */
     --poster-l1: 30%;
     --poster-l2: 16%;
     --shadow:    0 1px 2px rgba(28,26,22,.08), 0 8px 24px -12px rgba(28,26,22,.22);
@@ -50,6 +54,10 @@
       --removed:   #e46a60;
       --removed-bg:#2c1a18;
       --removed-line:#553030;
+      --st-watch:  #6ba8f0;
+      --st-book:   #e8b24c;
+      --st-seen:   #62cf8f;
+      --st-skip:   #e46a60;
       --poster-l1: 26%;
       --poster-l2: 12%;
       --shadow:    0 1px 2px rgba(0,0,0,.4), 0 14px 34px -16px rgba(0,0,0,.65);
@@ -73,6 +81,10 @@
     --removed:   #e46a60;
     --removed-bg:#2c1a18;
     --removed-line:#553030;
+    --st-watch:  #6ba8f0;
+    --st-book:   #e8b24c;
+    --st-seen:   #62cf8f;
+    --st-skip:   #e46a60;
     --poster-l1: 26%;
     --poster-l2: 12%;
     --shadow:    0 1px 2px rgba(0,0,0,.4), 0 14px 34px -16px rgba(0,0,0,.65);
@@ -318,8 +330,34 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .crow .mk-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .crow .arrow { color: var(--ink-faint); font-size: .95rem; }
   .crow:hover .arrow { color: var(--accent); }
+
+  /* ---------- my-list filter bar ---------- */
+  .filterbar { display: flex; flex-wrap: wrap; gap: 7px; margin: -4px 0 18px; }
+  .fchip {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .62rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink-soft);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .fchip .dot { width: 7px; height: 7px; border-radius: 50%; }
+  .fchip .fn { font-variant-numeric: tabular-nums; opacity: .8; }
+  .fchip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .fchip.w .dot { background: var(--st-watch); }
+  .fchip.b .dot { background: var(--st-book); }
+  .fchip.s .dot { background: var(--st-seen); }
+  .fchip.k .dot { background: var(--st-skip); }
 
   /* ---------- in theaters ---------- */
   .grid {
@@ -327,7 +365,8 @@
     grid-template-columns: repeat(auto-fill, minmax(138px, 1fr));
     gap: 20px 14px;
   }
-  .film { text-decoration: none; color: inherit; display: block; }
+  .film { position: relative; }
+  .film.hidden { display: none; }
   .poster {
     position: relative;
     aspect-ratio: 2 / 3;
@@ -341,7 +380,7 @@
         hsl(var(--h, 30) 48% var(--poster-l2)));
     display: flex;
     align-items: flex-end;
-    transition: transform .18s ease, box-shadow .18s ease;
+    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
   }
   .film:hover .poster {
     transform: translateY(-3px);
@@ -355,9 +394,12 @@
     object-fit: cover;
     display: block;
   }
+  .poster .plink { position: absolute; inset: 0; z-index: 1; }
   .poster .scrim {
     position: absolute;
     inset: 0;
+    z-index: 1;
+    pointer-events: none;
     background: linear-gradient(to top, rgba(0,0,0,.66) 2%, rgba(0,0,0,.10) 34%, transparent 55%);
   }
   .poster::before {
@@ -365,14 +407,16 @@
     position: absolute;
     top: 0; bottom: 0; left: 0;
     width: 7px;
+    z-index: 1;
+    pointer-events: none;
     background-image: repeating-linear-gradient(to bottom,
       rgba(0,0,0,.55) 0 4px, transparent 4px 10px);
     opacity: .45;
-    z-index: 2;
   }
   .poster .ptitle {
     position: relative;
     z-index: 2;
+    pointer-events: none;
     font-family: "Oswald", "Arial Narrow", sans-serif;
     font-weight: 600;
     text-transform: uppercase;
@@ -384,6 +428,81 @@
     text-wrap: balance;
     text-shadow: 0 1px 3px rgba(0,0,0,.55);
   }
+
+  /* status ring + skip grey-out */
+  .film[data-status="watchlist"] .poster { box-shadow: 0 0 0 2px var(--st-watch), var(--shadow); }
+  .film[data-status="booked"]    .poster { box-shadow: 0 0 0 2px var(--st-book),  var(--shadow); }
+  .film[data-status="seen"]      .poster { box-shadow: 0 0 0 2px var(--st-seen),  var(--shadow); }
+  .film[data-status="skip"]      .poster { box-shadow: 0 0 0 2px var(--st-skip),  var(--shadow); filter: grayscale(1) opacity(.5); }
+  .film[data-status="skip"]:hover .poster { filter: grayscale(1) opacity(.72); }
+
+  /* the mark pill */
+  .mk-btn {
+    position: absolute;
+    top: 6px; right: 6px;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .5rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    line-height: 1;
+    padding: 4px 7px 4px 6px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.5);
+    background: rgba(0,0,0,.55);
+    color: #fff;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+  }
+  .mk-btn:hover { background: rgba(0,0,0,.75); }
+  .mk-btn .ic { width: 11px; height: 11px; flex-shrink: 0; }
+  .film[data-status] .mk-btn { background: rgba(0,0,0,.62); }
+  .film[data-status="watchlist"] .mk-btn { border-color: var(--st-watch); color: var(--st-watch); }
+  .film[data-status="booked"]    .mk-btn { border-color: var(--st-book);  color: var(--st-book); }
+  .film[data-status="seen"]      .mk-btn { border-color: var(--st-seen);  color: var(--st-seen); }
+  .film[data-status="skip"]      .mk-btn { border-color: var(--st-skip);  color: var(--st-skip); }
+
+  .mk-menu[hidden] { display: none; }
+  .mk-menu {
+    position: absolute;
+    top: 32px; right: 6px;
+    z-index: 6;
+    min-width: 132px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    box-shadow: 0 10px 30px -8px rgba(0,0,0,.4);
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+  }
+  .mk-menu button {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: 0;
+    border-radius: 4px;
+    padding: 7px 8px;
+    font: inherit;
+    font-size: .78rem;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .mk-menu button:hover { background: var(--surface-2); }
+  .mk-menu button .ic { width: 16px; height: 16px; flex-shrink: 0; }
+  .mk-menu button.w .ic { color: var(--st-watch); }
+  .mk-menu button.b .ic { color: var(--st-book); }
+  .mk-menu button.s .ic { color: var(--st-seen); }
+  .mk-menu button.k .ic { color: var(--st-skip); }
+  .mk-menu .clear { color: var(--ink-faint); font-size: .72rem; border-top: 1px solid var(--line); border-radius: 0; margin-top: 2px; padding-left: 33px; }
 
   /* ---------- footer ---------- */
   .foot {
@@ -466,9 +585,10 @@
     <div class="change-col add">
       <header><span class="pip"></span>Added<span class="n">{{ added|length }}</span></header>
       {% for f in added %}
-      <a class="crow" href="{{ f.url }}" target="_blank" rel="noopener" style="--h: {{ f.hue }}">
+      <a class="crow" data-id="{{ f.id }}" href="{{ f.url }}" target="_blank" rel="noopener" style="--h: {{ f.hue }}">
         <span class="mini"{% if f.poster %} style="background-image: url('{{ f.poster }}')"{% endif %}></span>
         <span class="ctitle">{{ f.title }}</span>
+        <span class="mk-dot" hidden></span>
         <span class="arrow">&#8599;</span>
       </a>
       {% else %}
@@ -480,9 +600,10 @@
     <div class="change-col rem">
       <header><span class="pip"></span>Removed<span class="n">{{ removed|length }}</span></header>
       {% for f in removed %}
-      <a class="crow" href="{{ f.url }}" target="_blank" rel="noopener" style="--h: {{ f.hue }}">
+      <a class="crow" data-id="{{ f.id }}" href="{{ f.url }}" target="_blank" rel="noopener" style="--h: {{ f.hue }}">
         <span class="mini"{% if f.poster %} style="background-image: url('{{ f.poster }}')"{% endif %}></span>
         <span class="ctitle">{{ f.title }}</span>
+        <span class="mk-dot" hidden></span>
         <span class="arrow">&#8599;</span>
       </a>
       {% else %}
@@ -499,19 +620,25 @@
     <span class="count">{{ films|length }} listed</span>
   </div>
 
-  <div class="grid">
+  <div class="filterbar" id="filterbar" role="group" aria-label="Filter by your mark"></div>
+
+  <div class="grid" id="grid">
     {% for f in films %}
-    <a class="film" href="{{ f.url }}" target="_blank" rel="noopener" style="--h: {{ f.hue }}">
-      <span class="poster">
+    <div class="film" data-id="{{ f.id }}" style="--h: {{ f.hue }}">
+      <div class="poster">
+        <a class="plink" href="{{ f.url }}" target="_blank" rel="noopener" aria-label="{{ f.title }} on Odeon"></a>
         {% if f.poster %}<img class="pimg" src="{{ f.poster }}" alt="{{ f.title }} poster" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">{% endif %}
-        <span class="scrim"></span><span class="ptitle">{{ f.title }}</span>
-      </span>
-    </a>
+        <span class="scrim"></span>
+        <span class="ptitle">{{ f.title }}</span>
+        <button class="mk-btn" type="button" aria-haspopup="true">+ Mark</button>
+      </div>
+    </div>
     {% endfor %}
   </div>
 
   <footer class="foot">
     <p>Checked every Tuesday evening against <a href="https://www.odeon.co.uk/films/">odeon.co.uk/films</a> &mdash; after Odeon finalise the coming week&rsquo;s schedule.</p>
+    <p>Your marks &mdash; watchlist, booked, seen, skip &mdash; are saved in this browser only.</p>
     <p>An unofficial Odeon tracker &mdash; not affiliated with Odeon. Titles come from Odeon&rsquo;s sitemap. Page built {{ generated_at }}.</p>
   </footer>
 </div>
@@ -538,6 +665,160 @@
       apply();
     });
     apply();
+  })();
+
+  /* ---------- your marks: watchlist / booked / seen / skip (this browser only) ---------- */
+  (function () {
+    "use strict";
+    var grid = document.getElementById("grid");
+    if (!grid) return;
+
+    var SVG = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"';
+    var ICON = {
+      watchlist: '<svg class="ic" ' + SVG + '><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5.2l3.4 2"/></svg>',
+      booked:    '<svg class="ic" ' + SVG + '><circle cx="12" cy="12" r="8.5"/><path d="M8 12.3l2.8 2.8L16.2 9.3"/></svg>',
+      seen:      '<svg class="ic" ' + SVG + '><path d="M2 12s3.8-6.5 10-6.5S22 12 22 12s-3.8 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+      skip:      '<svg class="ic" ' + SVG + '><circle cx="12" cy="12" r="8.5"/><path d="M6 6l12 12"/></svg>'
+    };
+    var STATUSES = [
+      { key: "watchlist", label: "Watchlist", cls: "w" },
+      { key: "booked",    label: "Booked",    cls: "b" },
+      { key: "seen",      label: "Seen",      cls: "s" },
+      { key: "skip",      label: "Skip",      cls: "k" }
+    ];
+    var LABEL = { watchlist: "Watchlist", booked: "Booked", seen: "Seen", skip: "Skip" };
+    var VAR   = { watchlist: "--st-watch", booked: "--st-book", seen: "--st-seen", skip: "--st-skip" };
+
+    var KEY = "ns-marks";
+    function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+    function save() { try { localStorage.setItem(KEY, JSON.stringify(marks)); } catch (e) {} }
+    var marks = load();
+
+    function pillHTML(st) { return st ? ICON[st] + "<span>" + LABEL[st] + "</span>" : "+ Mark"; }
+    function menuHTML() {
+      var rows = STATUSES.map(function (s) {
+        return '<button type="button" class="' + s.cls + '" data-s="' + s.key + '">' +
+               ICON[s.key] + "<span>" + s.label + "</span></button>";
+      }).join("");
+      return '<div class="mk-menu" hidden>' + rows +
+             '<button type="button" class="clear" data-s="">Clear mark</button></div>';
+    }
+
+    var cards = [].slice.call(grid.querySelectorAll(".film"));
+    cards.forEach(function (card) {
+      var st = marks[card.dataset.id];
+      if (st) card.dataset.status = st;
+      card.querySelector(".mk-btn").innerHTML = pillHTML(st);
+      card.insertAdjacentHTML("beforeend", menuHTML());
+    });
+
+    function closeMenus(except) {
+      grid.querySelectorAll(".mk-menu:not([hidden])").forEach(function (m) {
+        if (m !== except) m.hidden = true;
+      });
+    }
+    function setStatus(id, st) {
+      if (st) marks[id] = st; else delete marks[id];
+      save();
+      var card = cards.filter(function (c) { return c.dataset.id === id; })[0];
+      if (card) {
+        if (st) card.dataset.status = st; else card.removeAttribute("data-status");
+        card.querySelector(".mk-btn").innerHTML = pillHTML(st);
+      }
+      renderFilters();
+      applyFilter(active);
+      renderDots();
+    }
+
+    grid.addEventListener("click", function (e) {
+      var pill = e.target.closest(".mk-btn");
+      var opt  = e.target.closest(".mk-menu button");
+      if (pill) {
+        e.preventDefault();
+        var menu = pill.closest(".film").querySelector(".mk-menu");
+        var wasOpen = !menu.hidden;
+        closeMenus();
+        menu.hidden = wasOpen;
+        return;
+      }
+      if (opt) {
+        e.preventDefault();
+        setStatus(opt.closest(".film").dataset.id, opt.dataset.s);
+        opt.closest(".mk-menu").hidden = true;
+        return;
+      }
+      closeMenus();
+    });
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest(".film")) closeMenus();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeMenus();
+    });
+
+    /* ---- filter bar ---- */
+    var active = "all";
+    var fbar = document.getElementById("filterbar");
+    function counts() {
+      var c = { all: cards.length, unmarked: 0, watchlist: 0, booked: 0, seen: 0, skip: 0 };
+      cards.forEach(function (card) {
+        var s = card.dataset.status;
+        if (s) c[s]++; else c.unmarked++;
+      });
+      return c;
+    }
+    function renderFilters() {
+      var c = counts();
+      var defs = [
+        { k: "all",       t: "All",       cls: "", n: c.all },
+        { k: "watchlist", t: "Watchlist", cls: "w", n: c.watchlist },
+        { k: "booked",    t: "Booked",    cls: "b", n: c.booked },
+        { k: "seen",      t: "Seen",      cls: "s", n: c.seen },
+        { k: "skip",      t: "Skip",      cls: "k", n: c.skip },
+        { k: "unmarked",  t: "Unmarked",  cls: "", n: c.unmarked }
+      ];
+      fbar.innerHTML = defs.map(function (d) {
+        return '<button type="button" class="fchip ' + d.cls + '" data-f="' + d.k +
+          '" aria-pressed="' + (active === d.k) + '">' +
+          (d.cls ? '<span class="dot"></span>' : "") + d.t +
+          ' <span class="fn">' + d.n + "</span></button>";
+      }).join("");
+    }
+    function applyFilter(f) {
+      active = f;
+      cards.forEach(function (card) {
+        var s = card.dataset.status || "";
+        var show = f === "all" || (f === "unmarked" && !s) || s === f;
+        card.classList.toggle("hidden", !show);
+      });
+      fbar.querySelectorAll(".fchip").forEach(function (chip) {
+        chip.setAttribute("aria-pressed", chip.dataset.f === f);
+      });
+    }
+    fbar.addEventListener("click", function (e) {
+      var chip = e.target.closest(".fchip");
+      if (chip) applyFilter(chip.dataset.f);
+    });
+
+    /* ---- Director's Cut dots ---- */
+    function renderDots() {
+      document.querySelectorAll(".crow[data-id]").forEach(function (row) {
+        var st = marks[row.dataset.id];
+        var dot = row.querySelector(".mk-dot");
+        if (!dot) return;
+        if (st) {
+          dot.hidden = false;
+          dot.style.background = "var(" + VAR[st] + ")";
+          dot.title = LABEL[st];
+        } else {
+          dot.hidden = true;
+        }
+      });
+    }
+
+    renderFilters();
+    applyFilter("all");
+    renderDots();
   })();
 </script>
 </body>
