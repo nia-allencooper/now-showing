@@ -1,7 +1,7 @@
 {
-  "scraped_at": "2026-09-10T13:15:08.632056+01:00",
+  "scraped_at": "2026-09-10T13:40:43.782189+01:00",
   "source": "https://www.odeon.co.uk/sitemap.xml",
-  "count": 164,
+  "count": 162,
   "films": [
     {
       "id": "HO00009446",
@@ -212,12 +212,6 @@
       "slug": "giant-the-play",
       "title": "Giant the Play",
       "url": "https://www.odeon.co.uk/films/giant-the-play/HO00009162/"
-    },
-    {
-      "id": "HO00009340",
-      "slug": "guggi",
-      "title": "Guggi",
-      "url": "https://www.odeon.co.uk/films/guggi/HO00009340/"
     },
     {
       "id": "HO00009329",
@@ -884,12 +878,6 @@
       "slug": "the-route-to-cappyness",
       "title": "The Route to Cappyness",
       "url": "https://www.odeon.co.uk/films/the-route-to-cappyness/HO00009449/"
-    },
-    {
-      "id": "HO00008411",
-      "slug": "the-sheep-detectives",
-      "title": "The Sheep Detectives",
-      "url": "https://www.odeon.co.uk/films/the-sheep-detectives/HO00008411/"
     },
     {
       "id": "HO00008216",
