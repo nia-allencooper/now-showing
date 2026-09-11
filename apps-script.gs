@@ -20,6 +20,14 @@
  * If you ever CHANGE this script, you must Deploy ▸ Manage deployments ▸ edit ▸
  * "New version" for the change to take effect. A brand-new deployment gives a new
  * URL (update sync-url.txt if so).
+ *
+ * NARROW THE PERMISSION PROMPT (optional but nice):
+ *   The default prompt asks for access to ALL your spreadsheets, because that's
+ *   the scope SpreadsheetApp defaults to. This script only touches its own sheet.
+ *   To scope it down: ⚙ Project Settings ▸ tick "Show appsscript.json manifest",
+ *   then in the editor replace appsscript.json with the copy in this repo
+ *   (it pins  spreadsheets.currentonly  = "only this spreadsheet"). Save and
+ *   re-deploy a new version; the re-auth prompt will then name just this sheet.
  */
 
 const SHEET_NAME = 'marks';

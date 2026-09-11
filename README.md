@@ -86,6 +86,10 @@ its Apps Script editor, deploy it as a web app, and put the resulting `/exec`
 URL in a file `sync-url.txt` in this folder. Next build bakes it in and the page
 gains a **Sync** button.
 
+[`appsscript.json`](appsscript.json) is the manifest to paste into the Apps
+Script editor so the auth prompt asks for *this one spreadsheet* instead of all
+of them (see the note in `apps-script.gs`).
+
 - `sync-url.txt` is git-ignored (local config); the URL still ends up in the
   built `site/index.html`, which is fine — access control is the secret link,
   not the URL.
