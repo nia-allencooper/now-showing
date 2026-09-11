@@ -422,6 +422,43 @@
   .fchip.s .dot { background: var(--st-seen); }
   .fchip.k .dot { background: var(--st-skip); }
 
+  .listbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin: -4px 0 18px;
+  }
+  .listbar .filterbar { margin: 0; }
+
+  /* plain text, not boxed like the filter chips - active one just underlines */
+  .sortctl { display: flex; align-items: center; gap: 13px; }
+  .sortctl .lbl {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .6rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .sortctl .stxt {
+    background: none;
+    border: 0;
+    padding: 2px 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .72rem;
+    letter-spacing: .02em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .sortctl .stxt:hover { color: var(--ink); }
+  .sortctl .stxt[aria-pressed="true"] {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
   /* ---------- in theaters ---------- */
   .grid {
     display: grid;
@@ -581,6 +618,14 @@
   .mk-menu button.k .ic { color: var(--st-skip); }
   .mk-menu .clear { color: var(--ink-faint); font-size: .72rem; border-top: 1px solid var(--line); border-radius: 0; margin-top: 2px; padding-left: 33px; }
 
+  .film .fmeta {
+    margin-top: 7px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .68rem;
+    letter-spacing: .02em;
+    color: var(--ink-faint);
+  }
+
   /* ---------- footer ---------- */
   .foot {
     margin-top: 48px;
@@ -701,11 +746,18 @@
     <span class="count">{{ films|length }} listed</span>
   </div>
 
-  <div class="filterbar" id="filterbar" role="group" aria-label="Filter by your mark"></div>
+  <div class="listbar">
+    <div class="filterbar" id="filterbar" role="group" aria-label="Filter by your mark"></div>
+    <div class="sortctl" id="sortctl">
+      <span class="lbl">Sort</span>
+      <button type="button" class="stxt" data-sort="name" aria-pressed="true">Name</button>
+      <button type="button" class="stxt" data-sort="release" aria-pressed="false">Release</button>
+    </div>
+  </div>
 
   <div class="grid" id="grid">
     {% for f in films %}
-    <div class="film" data-id="{{ f.id }}" style="--h: {{ f.hue }}">
+    <div class="film" data-id="{{ f.id }}" data-name="{{ f.title|lower }}" data-iso="{{ f.release_iso or '' }}" style="--h: {{ f.hue }}">
       <div class="poster">
         <a class="plink" href="{{ f.url }}" target="_blank" rel="noopener" aria-label="{{ f.title }} on Odeon"></a>
         {% if f.poster %}<img class="pimg" src="{{ f.poster }}" alt="{{ f.title }} poster" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">{% endif %}
@@ -713,6 +765,7 @@
         <span class="ptitle">{{ f.title }}</span>
         <button class="mk-btn" type="button" aria-haspopup="true">+ Mark</button>
       </div>
+      <div class="fmeta">{{ f.release_label or '[TO BE ADDED]' }}</div>
     </div>
     {% endfor %}
   </div>
@@ -886,6 +939,26 @@
     fbar.addEventListener("click", function (e) {
       var chip = e.target.closest(".fchip");
       if (chip) applyFilter(chip.dataset.f);
+    });
+
+    /* ---- sort: name (default) or release date ---- */
+    var sortCtl = document.getElementById("sortctl");
+    function applySort(mode) {
+      var sorted = cards.slice().sort(function (a, b) {
+        if (mode === "release") {
+          return (a.dataset.iso || "9999").localeCompare(b.dataset.iso || "9999") ||
+                 a.dataset.name.localeCompare(b.dataset.name);
+        }
+        return a.dataset.name.localeCompare(b.dataset.name);
+      });
+      sorted.forEach(function (c) { grid.appendChild(c); });
+      sortCtl.querySelectorAll(".stxt").forEach(function (b) {
+        b.setAttribute("aria-pressed", b.dataset.sort === mode);
+      });
+    }
+    sortCtl.addEventListener("click", function (e) {
+      var b = e.target.closest(".stxt");
+      if (b) applySort(b.dataset.sort);
     });
 
     /* ---- Director's Cut dots ---- */
@@ -1064,6 +1137,7 @@
 
     renderFilters();
     applyFilter("all");
+    applySort("name");
     renderDots();
     renderPanel();
     if (NS_SYNC_URL && syncKey) { startPoll(); pull(); }

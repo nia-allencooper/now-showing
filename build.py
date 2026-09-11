@@ -62,6 +62,32 @@ def load(path: pathlib.Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+RELEASE_FILE = ROOT / "release-dates.json"
+
+
+def load_release_dates() -> dict:
+    if not RELEASE_FILE.exists():
+        return {}
+    try:
+        return json.loads(RELEASE_FILE.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def prune_release_dates(dates: dict, current_ids: set) -> dict:
+    """A release date is entered by hand once and kept as long as the film
+    stays listed - it isn't tied to the weekly scrape. Drop it only when the
+    film itself falls off Odeon's list."""
+    pruned = {k: v for k, v in dates.items() if k in current_ids}
+    if pruned != dates:
+        RELEASE_FILE.write_text(
+            json.dumps(pruned, indent=2, ensure_ascii=False, sort_keys=True),
+            encoding="utf-8",
+            newline="\n",
+        )
+    return pruned
+
+
 def main():
     snaps = sorted(SNAP_DIR.glob("20*.json"))
     if not snaps:
@@ -70,6 +96,14 @@ def main():
     latest_path = snaps[-1]
     latest = load(latest_path)
     latest_date = datetime.date.fromisoformat(latest_path.stem)
+
+    release_dates = prune_release_dates(
+        load_release_dates(), {f["id"] for f in latest["films"]}
+    )
+    for f in latest["films"]:
+        entry = release_dates.get(f["id"])
+        f["release_label"] = entry.get("label") if entry else None
+        f["release_iso"] = entry.get("iso") if entry else None
 
     prev_path = snaps[-2] if len(snaps) > 1 else None
     if prev_path:
