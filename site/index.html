@@ -603,13 +603,13 @@
     </div>
     <div class="aside">
       <div class="btnrow">
-        <button class="theme-toggle" id="themeBtn" type="button">Theme</button>
+<button class="theme-toggle" id="syncBtn" type="button">Sync</button>        <button class="theme-toggle" id="themeBtn" type="button">Theme</button>
       </div>
       <div class="stamp">
         <small>Latest check</small>
         <strong>Friday 11 September 2026</strong>
       </div>
-    </div>
+<div class="syncpanel" id="syncPanel" hidden></div>    </div>
   </header>
 
   <section class="summary" aria-label="This check versus last check">
@@ -2024,8 +2024,8 @@ Gone since Thursday 10 September 2026      </div>
 
   <footer class="foot">
     <p>Checked every Tuesday evening against <a href="https://www.odeon.co.uk/films/">odeon.co.uk/films</a> &mdash; after Odeon finalise the coming week&rsquo;s schedule.</p>
-    <p>Your marks &mdash; watchlist, booked, seen, skip &mdash; are saved in this browser.</p>
-    <p>An unofficial Odeon tracker &mdash; not affiliated with Odeon. Titles come from Odeon&rsquo;s sitemap. Page built 2026-09-11 00:30 UTC.</p>
+    <p>Your marks &mdash; watchlist, booked, seen, skip &mdash; are saved in this browser, or synced across devices via the Sync button.</p>
+    <p>An unofficial Odeon tracker &mdash; not affiliated with Odeon. Titles come from Odeon&rsquo;s sitemap. Page built 2026-09-11 00:35 UTC.</p>
   </footer>
 </div>
 
@@ -2059,7 +2059,7 @@ Gone since Thursday 10 September 2026      </div>
     var grid = document.getElementById("grid");
     if (!grid) return;
 
-    var NS_SYNC_URL = "";
+    var NS_SYNC_URL = "https://script.google.com/macros/s/AKfycbxlEM9O6fSy0kXp9MLib2rFLAp2TCreT4sQo-pxww1vRJXoHmkEItojkPL7k7JZmIj6/exec";
 
     var SVG = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"';
     var ICON = {
