@@ -11,6 +11,7 @@ Run:  python build.py
 import datetime
 import json
 import pathlib
+import shutil
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
@@ -20,6 +21,14 @@ ROOT = pathlib.Path(__file__).parent
 SNAP_DIR = ROOT / "snapshots"
 SITE_DIR = ROOT / "site"
 TEMPLATES = ROOT / "templates"
+ASSETS_DIR = ROOT / "assets"
+
+# Favicon / installed-app icon - not shown in the page itself.
+ASSET_FILES = [
+    "icon.svg", "favicon-32.png", "favicon-16.png",
+    "icon-192.png", "icon-512.png", "apple-touch-icon.png",
+    "manifest.webmanifest",
+]
 
 WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 MONTHS = [
@@ -100,6 +109,10 @@ def main():
     )
 
     SITE_DIR.mkdir(exist_ok=True)
+    for name in ASSET_FILES:
+        src = ASSETS_DIR / name
+        if src.exists():
+            shutil.copyfile(src, SITE_DIR / name)
     (SITE_DIR / "index.html").write_text(html, encoding="utf-8", newline="\n")
     (SITE_DIR / "latest.json").write_text(
         json.dumps(
