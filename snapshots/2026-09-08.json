@@ -1,7 +1,8 @@
 {
-  "scraped_at": "2026-09-10T15:36:54.902878+01:00",
+  "week_of": "2026-09-08",
+  "scraped_at": "2026-09-11T01:30:05.181912+01:00",
   "source": "https://www.odeon.co.uk/sitemap.xml",
-  "count": 164,
+  "count": 166,
   "films": [
     {
       "id": "HO00009446",
@@ -168,8 +169,8 @@
       "slug": "digger-presented-in-vistavision",
       "title": "Digger Presented in Vistavision",
       "url": "https://www.odeon.co.uk/films/digger-presented-in-vistavision/HO00009465/",
-      "poster": "https://image.tmdb.org/t/p/w500/1ATXKrIPJyKNwnJ6lcG088Sa6zi.jpg",
-      "poster_source": "tmdb"
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009465?width=400",
+      "poster_source": "odeon"
     },
     {
       "id": "HO00009109",
@@ -217,6 +218,14 @@
       "title": "Epic First Semester",
       "url": "https://www.odeon.co.uk/films/epic-first-semester/HO00009443/",
       "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009443?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009468",
+      "slug": "everest-the-other-side",
+      "title": "Everest the Other Side",
+      "url": "https://www.odeon.co.uk/films/everest-the-other-side/HO00009468/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009468?width=400",
       "poster_source": "odeon"
     },
     {
@@ -396,14 +405,6 @@
       "poster_source": "odeon"
     },
     {
-      "id": "HO00009294",
-      "slug": "hunger-games-ballad-of-songbirdssnakes-2026",
-      "title": "Hunger Games Ballad of Songbirdssnakes 2026",
-      "url": "https://www.odeon.co.uk/films/hunger-games-ballad-of-songbirdssnakes-2026/HO00009294/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009294?width=400",
-      "poster_source": "odeon"
-    },
-    {
       "id": "HO00009343",
       "slug": "i-want-your-sex",
       "title": "I Want Your Sex",
@@ -441,14 +442,6 @@
       "title": "Iu Concert the Winning Re Release",
       "url": "https://www.odeon.co.uk/films/iu-concert-the-winning-re-release/HO00009429/",
       "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009429?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009352",
-      "slug": "judaa",
-      "title": "Judaa",
-      "url": "https://www.odeon.co.uk/films/judaa/HO00009352/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009352?width=400",
       "poster_source": "odeon"
     },
     {
@@ -988,6 +981,14 @@
       "poster_source": "odeon"
     },
     {
+      "id": "HO00009470",
+      "slug": "tad-and-the-magic-lamp",
+      "title": "Tad and the Magic Lamp",
+      "url": "https://www.odeon.co.uk/films/tad-and-the-magic-lamp/HO00009470/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009470?width=400",
+      "poster_source": "odeon"
+    },
+    {
       "id": "HO00009423",
       "slug": "take-it-or-leave-it",
       "title": "Take It or Leave It",
@@ -1188,6 +1189,14 @@
       "poster_source": "odeon"
     },
     {
+      "id": "HO00009472",
+      "slug": "the-social-reckoning",
+      "title": "The Social Reckoning",
+      "url": "https://www.odeon.co.uk/films/the-social-reckoning/HO00009472/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009472?width=400",
+      "poster_source": "odeon"
+    },
+    {
       "id": "HO00008216",
       "slug": "the-super-mario-galaxy-movie",
       "title": "The Super Mario Galaxy Movie",
@@ -1297,6 +1306,14 @@
       "title": "Whisper of the Heart Sub",
       "url": "https://www.odeon.co.uk/films/whisper-of-the-heart-sub/HO00009358/",
       "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009358?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009466",
+      "slug": "wicker",
+      "title": "Wicker",
+      "url": "https://www.odeon.co.uk/films/wicker/HO00009466/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009466?width=400",
       "poster_source": "odeon"
     },
     {

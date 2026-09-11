@@ -209,13 +209,18 @@ def main():
     except Exception as exc:  # noqa: BLE001 - posters are cosmetic, never fail the run
         print(f"poster resolution had a problem (continuing): {exc}", file=sys.stderr)
 
-    today = datetime.datetime.now(UK).date().isoformat()
+    # Anchor the snapshot to THIS WEEK's Tuesday, not "today". Running the
+    # scraper any day of the week just overwrites that week's file, so the
+    # added/removed diff only ever moves once a week - not whenever a build runs.
+    now = datetime.datetime.now(UK)
+    tuesday = now.date() - datetime.timedelta(days=(now.date().weekday() - 1) % 7)
     SNAP_DIR.mkdir(exist_ok=True)
-    out = SNAP_DIR / f"{today}.json"
+    out = SNAP_DIR / f"{tuesday.isoformat()}.json"
     out.write_text(
         json.dumps(
             {
-                "scraped_at": datetime.datetime.now(UK).isoformat(),
+                "week_of": tuesday.isoformat(),
+                "scraped_at": now.isoformat(),
                 "source": SITEMAP,
                 "count": len(films),
                 "films": films,
@@ -226,7 +231,7 @@ def main():
         encoding="utf-8",
         newline="\n",
     )
-    print(f"wrote {out.name}: {len(films)} films")
+    print(f"wrote {out.name}: {len(films)} films (week of {tuesday.isoformat()})")
 
 
 if __name__ == "__main__":

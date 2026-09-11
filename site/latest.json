@@ -1,57 +1,7 @@
 {
-  "this": "2026-09-11",
-  "previous": "2026-09-10",
+  "this": "2026-09-08",
+  "previous": null,
   "total": 166,
-  "added": [
-    {
-      "id": "HO00009468",
-      "slug": "everest-the-other-side",
-      "title": "Everest the Other Side",
-      "url": "https://www.odeon.co.uk/films/everest-the-other-side/HO00009468/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009468?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009470",
-      "slug": "tad-and-the-magic-lamp",
-      "title": "Tad and the Magic Lamp",
-      "url": "https://www.odeon.co.uk/films/tad-and-the-magic-lamp/HO00009470/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009470?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009472",
-      "slug": "the-social-reckoning",
-      "title": "The Social Reckoning",
-      "url": "https://www.odeon.co.uk/films/the-social-reckoning/HO00009472/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009472?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009466",
-      "slug": "wicker",
-      "title": "Wicker",
-      "url": "https://www.odeon.co.uk/films/wicker/HO00009466/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009466?width=400",
-      "poster_source": "odeon"
-    }
-  ],
-  "removed": [
-    {
-      "id": "HO00009294",
-      "slug": "hunger-games-ballad-of-songbirdssnakes-2026",
-      "title": "Hunger Games Ballad of Songbirdssnakes 2026",
-      "url": "https://www.odeon.co.uk/films/hunger-games-ballad-of-songbirdssnakes-2026/HO00009294/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009294?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009352",
-      "slug": "judaa",
-      "title": "Judaa",
-      "url": "https://www.odeon.co.uk/films/judaa/HO00009352/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009352?width=400",
-      "poster_source": "odeon"
-    }
-  ]
+  "added": [],
+  "removed": []
 }

@@ -9,7 +9,7 @@ grid of everything currently listed. Every title links back to its Odeon page.
 
 | Piece | Job |
 | --- | --- |
-| `scrape.py` | Fetches `odeon.co.uk/sitemap.xml` with `curl_cffi` (browser TLS fingerprint), pulls every `/films/<slug>/HO<id>/` entry → `snapshots/YYYY-MM-DD.json` |
+| `scrape.py` | Fetches `odeon.co.uk/sitemap.xml` with `curl_cffi` (browser TLS fingerprint), pulls every `/films/<slug>/HO<id>/` entry → `snapshots/<that-week's-Tuesday>.json` |
 | `diff.py` | Compares two snapshots by Odeon's stable `HO…` id → added / removed |
 | `build.py` | Two newest snapshots → diff → renders `site/index.html` from `templates/index.html.j2` |
 | `run-weekly.bat` | Runs the three above and `git push`es the result. Windows Task Scheduler fires it weekly. |
@@ -52,6 +52,11 @@ pip install -r requirements.txt
 ```
 
 Test it: `python scrape.py` then `python build.py`, open `site/index.html`.
+
+Snapshots are named after **the Tuesday of the week they belong to**, not the day
+the scraper ran — so running it several times mid-week just overwrites that
+week's file. The added/removed diff only advances from one Tuesday to the next,
+never because a build happened on some other day.
 
 ### 2. GitHub
 
