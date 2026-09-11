@@ -455,7 +455,7 @@
   .poster .scrim {
     position: absolute;
     inset: 0;
-    z-index: 1;
+    z-index: 2;
     pointer-events: none;
     background: linear-gradient(to top, rgba(0,0,0,.66) 2%, rgba(0,0,0,.10) 34%, transparent 55%);
   }
@@ -472,7 +472,7 @@
   }
   .poster .ptitle {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     pointer-events: none;
     font-family: "Oswald", "Arial Narrow", sans-serif;
     font-weight: 600;
@@ -486,12 +486,26 @@
     text-shadow: 0 1px 3px rgba(0,0,0,.55);
   }
 
-  /* status ring + skip grey-out */
+  /* status ring; seen = green-tinted grey, skip = plain grey */
   .film[data-status="watchlist"] .poster { box-shadow: 0 0 0 2px var(--st-watch), var(--shadow); }
   .film[data-status="booked"]    .poster { box-shadow: 0 0 0 2px var(--st-book),  var(--shadow); }
   .film[data-status="seen"]      .poster { box-shadow: 0 0 0 2px var(--st-seen),  var(--shadow); }
   .film[data-status="skip"]      .poster { box-shadow: 0 0 0 2px var(--st-skip),  var(--shadow); filter: grayscale(1) opacity(.5); }
   .film[data-status="skip"]:hover .poster { filter: grayscale(1) opacity(.72); }
+
+  .film[data-status="seen"] .pimg { filter: grayscale(1); opacity: .82; }
+  .film[data-status="seen"] .poster::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: var(--st-seen);
+    mix-blend-mode: color;
+    opacity: .6;
+  }
+  .film[data-status="seen"]:hover .pimg { filter: grayscale(.35); opacity: 1; }
+  .film[data-status="seen"]:hover .poster::after { opacity: .32; }
 
   /* the mark pill */
   .mk-btn {
