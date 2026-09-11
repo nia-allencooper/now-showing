@@ -97,9 +97,6 @@ def main():
         prev_label=prev_label,
         is_first_run=prev_path is None,
         sync_url=sync_url,
-        generated_at=datetime.datetime.now(datetime.timezone.utc).strftime(
-            "%Y-%m-%d %H:%M UTC"
-        ),
     )
 
     SITE_DIR.mkdir(exist_ok=True)

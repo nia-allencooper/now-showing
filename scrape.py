@@ -204,18 +204,28 @@ def main():
         )
         sys.exit(1)
 
+    # Anchor the snapshot to THIS WEEK's Tuesday, and DON'T touch it once it
+    # exists. The first run of the week (the Tuesday scheduled job, or a
+    # catch-up if the PC was off) captures that week's list; every later run
+    # that week is a no-op. So the list and the diff only move Tuesday to
+    # Tuesday - never because a build or a manual run happened mid-week.
+    now = datetime.datetime.now(UK)
+    tuesday = now.date() - datetime.timedelta(days=(now.date().weekday() - 1) % 7)
+    SNAP_DIR.mkdir(exist_ok=True)
+    out = SNAP_DIR / f"{tuesday.isoformat()}.json"
+
+    if out.exists() and "--force" not in sys.argv:
+        print(
+            f"snapshot for week of {tuesday.isoformat()} already exists - "
+            "frozen until next Tuesday (pass --force to overwrite)"
+        )
+        return
+
     try:
         resolve_posters(films)
     except Exception as exc:  # noqa: BLE001 - posters are cosmetic, never fail the run
         print(f"poster resolution had a problem (continuing): {exc}", file=sys.stderr)
 
-    # Anchor the snapshot to THIS WEEK's Tuesday, not "today". Running the
-    # scraper any day of the week just overwrites that week's file, so the
-    # added/removed diff only ever moves once a week - not whenever a build runs.
-    now = datetime.datetime.now(UK)
-    tuesday = now.date() - datetime.timedelta(days=(now.date().weekday() - 1) % 7)
-    SNAP_DIR.mkdir(exist_ok=True)
-    out = SNAP_DIR / f"{tuesday.isoformat()}.json"
     out.write_text(
         json.dumps(
             {
