@@ -58,27 +58,8 @@ function json_(obj) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
-function doGet(e) {
-  const key = ((e && e.parameter && e.parameter.key) || '').trim();
-  if (!key) return json_({ error: 'no key' });
-  const sh = sheet_();
-  const row = findRow_(sh, key);
-  if (!row) return json_({ marks: {}, updated: 0 });
-  const rec = sh.getRange(row, 2, 1, 2).getValues()[0];
-  let marks = {};
-  try { marks = JSON.parse(rec[0] || '{}'); } catch (err) { marks = {}; }
-  return json_({ marks: marks, updated: Number(rec[1]) || 0 });
-}
-
-function doPost(e) {
-  let body;
-  try { body = JSON.parse(e.postData.contents); }
-  catch (err) { return json_({ error: 'bad json' }); }
-
-  const key = String(body.key || '').trim();
-  if (!key) return json_({ error: 'no key' });
-  const marks = (body.marks && typeof body.marks === 'object') ? body.marks : {};
-
+function write_(key, marksObj) {
+  const marks = (marksObj && typeof marksObj === 'object') ? marksObj : {};
   const lock = LockService.getScriptLock();
   lock.waitLock(15000);
   try {
@@ -92,4 +73,40 @@ function doPost(e) {
   } finally {
     lock.releaseLock();
   }
+}
+
+function read_(key) {
+  const sh = sheet_();
+  const row = findRow_(sh, key);
+  if (!row) return json_({ marks: {}, updated: 0 });
+  const rec = sh.getRange(row, 2, 1, 2).getValues()[0];
+  let marks = {};
+  try { marks = JSON.parse(rec[0] || '{}'); } catch (err) { marks = {}; }
+  return json_({ marks: marks, updated: Number(rec[1]) || 0 });
+}
+
+// Both read and write go through doGet - browsers can't reliably POST to an
+// Apps Script web app (the redirect drops the body), but GET always works.
+//   read :  ?key=abc
+//   write:  ?key=abc&marks=<url-encoded JSON>
+function doGet(e) {
+  const p = (e && e.parameter) || {};
+  const key = String(p.key || '').trim();
+  if (!key) return json_({ error: 'no key' });
+
+  if (typeof p.marks === 'string') {
+    let marks;
+    try { marks = JSON.parse(p.marks); } catch (err) { return json_({ error: 'bad marks json' }); }
+    return write_(key, marks);
+  }
+  return read_(key);
+}
+
+function doPost(e) {
+  let body;
+  try { body = JSON.parse(e.postData.contents); }
+  catch (err) { return json_({ error: 'bad json' }); }
+  const key = String(body.key || '').trim();
+  if (!key) return json_({ error: 'no key' });
+  return write_(key, body.marks);
 }

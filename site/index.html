@@ -2025,7 +2025,7 @@ Gone since Thursday 10 September 2026      </div>
   <footer class="foot">
     <p>Checked every Tuesday evening against <a href="https://www.odeon.co.uk/films/">odeon.co.uk/films</a> &mdash; after Odeon finalise the coming week&rsquo;s schedule.</p>
     <p>Your marks &mdash; watchlist, booked, seen, skip &mdash; are saved in this browser, or synced across devices via the Sync button.</p>
-    <p>An unofficial Odeon tracker &mdash; not affiliated with Odeon. Titles come from Odeon&rsquo;s sitemap. Page built 2026-09-11 00:35 UTC.</p>
+    <p>An unofficial Odeon tracker &mdash; not affiliated with Odeon. Titles come from Odeon&rsquo;s sitemap. Page built 2026-09-11 00:44 UTC.</p>
   </footer>
 </div>
 
@@ -2226,11 +2226,12 @@ Gone since Thursday 10 September 2026      </div>
     var pushTimer = null, poll = null, syncMsg = "";
 
     if (NS_SYNC_URL) {
-      var hm = /[#&]sync=([A-Za-z0-9_-]{6,})/.exec(location.hash || "");
+      var re = /[?#&]sync=([A-Za-z0-9_-]{6,})/;
+      var hm = re.exec(location.search || "") || re.exec(location.hash || "");
       if (hm) {
         syncKey = hm[1];
         ls(SK_KEY, syncKey);
-        try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+        try { history.replaceState(null, "", location.pathname); } catch (e) {}
       }
     }
 
@@ -2242,22 +2243,23 @@ Gone since Thursday 10 September 2026      </div>
       for (i = 0; i < 16; i++) s += ("0" + a[i].toString(16)).slice(-2);
       return s;
     }
-    function shareLink() { return location.origin + location.pathname + "#sync=" + syncKey; }
+    function shareLink() { return location.origin + location.pathname + "?sync=" + syncKey; }
 
     function pull() {
       if (!NS_SYNC_URL || !syncKey) return;
       syncMsg = "checking…"; renderPanel();
-      fetch(NS_SYNC_URL + "?key=" + encodeURIComponent(syncKey), { cache: "no-store" })
+      fetch(NS_SYNC_URL + "?key=" + encodeURIComponent(syncKey) + "&t=" + Date.now(), { cache: "no-store" })
         .then(function (r) { return r.json(); })
         .then(function (d) {
-          if (d && d.marks && typeof d.updated === "number" && d.updated > localAt) {
+          var remoteAt = (d && typeof d.updated === "number") ? d.updated : 0;
+          if (d && d.marks && remoteAt > localAt) {
             marks = d.marks;
-            localAt = d.updated;
+            localAt = remoteAt;
             ls(KEY, JSON.stringify(marks));
             ls(AT_KEY, String(localAt));
             applyAll();
             syncMsg = "updated from another device";
-          } else if (localAt > (d && d.updated || 0)) {
+          } else if (localAt > remoteAt || (remoteAt === 0 && Object.keys(marks).length)) {
             doPush();
             return;
           } else {
@@ -2270,11 +2272,10 @@ Gone since Thursday 10 September 2026      </div>
     function doPush() {
       if (!NS_SYNC_URL || !syncKey) return;
       syncMsg = "saving…"; renderPanel();
-      fetch(NS_SYNC_URL, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({ key: syncKey, marks: marks })
-      })
+      var u = NS_SYNC_URL + "?key=" + encodeURIComponent(syncKey) +
+              "&marks=" + encodeURIComponent(JSON.stringify(marks)) +
+              "&t=" + Date.now();
+      fetch(u, { cache: "no-store" })
         .then(function (r) { return r.json(); })
         .then(function (d) {
           if (d && d.ok && typeof d.updated === "number") {
@@ -2295,10 +2296,12 @@ Gone since Thursday 10 September 2026      </div>
       poll = setInterval(pull, 60000);
     }
     function startSync() {
-      if (!syncKey) syncKey = newKey();
+      var fresh = !syncKey;
+      if (fresh) syncKey = newKey();
       ls(SK_KEY, syncKey);
       startPoll();
-      pull();
+      if (fresh) doPush();   // upload the marks this device already has
+      else pull();
       renderPanel();
     }
     function stopSync() {
