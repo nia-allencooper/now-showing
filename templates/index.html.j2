@@ -867,7 +867,7 @@
         card.querySelector(".mk-btn").innerHTML = pillHTML(st);
       }
       renderFilters();
-      applyFilter(active);
+      applyFilter();
       renderDots();
     }
 
@@ -897,8 +897,8 @@
       if (e.key === "Escape") closeMenus();
     });
 
-    /* ---- filter bar ---- */
-    var active = "all";
+    /* ---- filter bar: multi-select, OR'd together ---- */
+    var activeFilters = new Set(["all"]);
     var fbar = document.getElementById("filterbar");
     function counts() {
       var c = { all: cards.length, unmarked: 0, watchlist: 0, booked: 0, seen: 0, skip: 0 };
@@ -920,25 +920,35 @@
       ];
       fbar.innerHTML = defs.map(function (d) {
         return '<button type="button" class="fchip ' + d.cls + '" data-f="' + d.k +
-          '" aria-pressed="' + (active === d.k) + '">' +
+          '" aria-pressed="' + activeFilters.has(d.k) + '">' +
           (d.cls ? '<span class="dot"></span>' : "") + d.t +
           ' <span class="fn">' + d.n + "</span></button>";
       }).join("");
     }
-    function applyFilter(f) {
-      active = f;
+    function toggleFilter(key) {
+      if (key === "all") {
+        activeFilters = new Set(["all"]);
+      } else {
+        activeFilters.delete("all");
+        if (activeFilters.has(key)) activeFilters.delete(key);
+        else activeFilters.add(key);
+        if (activeFilters.size === 0) activeFilters.add("all");
+      }
+      renderFilters();
+      applyFilter();
+    }
+    function applyFilter() {
       cards.forEach(function (card) {
         var s = card.dataset.status || "";
-        var show = f === "all" || (f === "unmarked" && !s) || s === f;
+        var show = activeFilters.has("all") ||
+                   (activeFilters.has("unmarked") && !s) ||
+                   (s && activeFilters.has(s));
         card.classList.toggle("hidden", !show);
-      });
-      fbar.querySelectorAll(".fchip").forEach(function (chip) {
-        chip.setAttribute("aria-pressed", chip.dataset.f === f);
       });
     }
     fbar.addEventListener("click", function (e) {
       var chip = e.target.closest(".fchip");
-      if (chip) applyFilter(chip.dataset.f);
+      if (chip) toggleFilter(chip.dataset.f);
     });
 
     /* ---- sort: name (default) or release date ---- */
@@ -985,7 +995,7 @@
         card.querySelector(".mk-btn").innerHTML = pillHTML(st);
       });
       renderFilters();
-      applyFilter(active);
+      applyFilter();
       renderDots();
     }
 
@@ -1136,7 +1146,7 @@
     }
 
     renderFilters();
-    applyFilter("all");
+    applyFilter();
     applySort("name");
     renderDots();
     renderPanel();
