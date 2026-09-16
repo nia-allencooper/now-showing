@@ -88,6 +88,43 @@ def prune_release_dates(dates: dict, current_ids: set) -> dict:
     return pruned
 
 
+FIRST_SEEN_FILE = ROOT / "first-seen.json"
+
+
+def load_first_seen() -> dict:
+    if not FIRST_SEEN_FILE.exists():
+        return {}
+    try:
+        return json.loads(FIRST_SEEN_FILE.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def update_first_seen(seen: dict, snaps: list[pathlib.Path]) -> dict:
+    """Date each currently-listed film was first noticed by this tracker
+    (i.e. when WE added it to the site - not its Odeon release date). Backfills
+    from every snapshot on disk the first time this runs, then only needs the
+    latest snapshot on later runs since earlier ids are already recorded.
+    Dropped when a film falls off the list, so a returning film counts as
+    newly added again rather than keeping a years-old date."""
+    seen = dict(seen)
+    for snap_path in snaps:
+        date_str = snap_path.stem
+        for f in load(snap_path)["films"]:
+            seen.setdefault(f["id"], date_str)
+
+    latest_ids = {f["id"] for f in load(snaps[-1])["films"]}
+    pruned = {k: v for k, v in seen.items() if k in latest_ids}
+
+    if pruned != load_first_seen():
+        FIRST_SEEN_FILE.write_text(
+            json.dumps(pruned, indent=2, ensure_ascii=False, sort_keys=True),
+            encoding="utf-8",
+            newline="\n",
+        )
+    return pruned
+
+
 def main():
     snaps = sorted(SNAP_DIR.glob("20*.json"))
     if not snaps:
@@ -100,10 +137,12 @@ def main():
     release_dates = prune_release_dates(
         load_release_dates(), {f["id"] for f in latest["films"]}
     )
+    first_seen = update_first_seen(load_first_seen(), snaps)
     for f in latest["films"]:
         entry = release_dates.get(f["id"])
         f["release_label"] = entry.get("label") if entry else None
         f["release_iso"] = entry.get("iso") if entry else None
+        f["added_iso"] = first_seen.get(f["id"])
 
     prev_path = snaps[-2] if len(snaps) > 1 else None
     if prev_path:

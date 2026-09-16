@@ -752,12 +752,13 @@
       <span class="lbl">Sort</span>
       <button type="button" class="stxt" data-sort="name" aria-pressed="true">Name</button>
       <button type="button" class="stxt" data-sort="release" aria-pressed="false">Release</button>
+      <button type="button" class="stxt" data-sort="new" aria-pressed="false">New</button>
     </div>
   </div>
 
   <div class="grid" id="grid">
     {% for f in films %}
-    <div class="film" data-id="{{ f.id }}" data-name="{{ f.title|lower }}" data-iso="{{ f.release_iso or '' }}" style="--h: {{ f.hue }}">
+    <div class="film" data-id="{{ f.id }}" data-name="{{ f.title|lower }}" data-iso="{{ f.release_iso or '' }}" data-added="{{ f.added_iso or '' }}" style="--h: {{ f.hue }}">
       <div class="poster">
         <a class="plink" href="{{ f.url }}" target="_blank" rel="noopener" aria-label="{{ f.title }} on Odeon"></a>
         {% if f.poster %}<img class="pimg" src="{{ f.poster }}" alt="{{ f.title }} poster" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">{% endif %}
@@ -969,12 +970,16 @@
       if (chip) toggleFilter(chip.dataset.f);
     });
 
-    /* ---- sort: name (default) or release date ---- */
+    /* ---- sort: name (default), release date, or newest-added ---- */
     var sortCtl = document.getElementById("sortctl");
     function applySort(mode) {
       var sorted = cards.slice().sort(function (a, b) {
         if (mode === "release") {
           return (a.dataset.iso || "9999").localeCompare(b.dataset.iso || "9999") ||
+                 a.dataset.name.localeCompare(b.dataset.name);
+        }
+        if (mode === "new") {
+          return (b.dataset.added || "").localeCompare(a.dataset.added || "") ||
                  a.dataset.name.localeCompare(b.dataset.name);
         }
         return a.dataset.name.localeCompare(b.dataset.name);
