@@ -2475,13 +2475,16 @@ Gone since Tuesday 8 September 2026      </div>
 
     var cards = [].slice.call(grid.querySelectorAll(".film"));
 
-    /* a mark only means something while its film is actually listed - drop
-       marks for anything that's fallen off this week's board, so a film
-       returning months/years later starts unmarked rather than resurfacing
-       whatever it was left as. */
+    /* a mark stays useful for one extra week after a film is pulled - long
+       enough to notice "oh, that got removed" in the Removed column - then
+       gets purged, so a film returning months/years later starts unmarked
+       rather than resurfacing whatever it was left as. */
     (function pruneMarks() {
       var live = {};
       cards.forEach(function (c) { live[c.dataset.id] = true; });
+      document.querySelectorAll(".change-col.rem .crow[data-id]").forEach(function (r) {
+        live[r.dataset.id] = true;
+      });
       var changed = false;
       Object.keys(marks).forEach(function (id) {
         if (!live[id]) { delete marks[id]; changed = true; }
