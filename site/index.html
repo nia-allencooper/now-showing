@@ -1595,14 +1595,14 @@ Gone since Tuesday 8 September 2026      </div>
       </div>
       <div class="fmeta">6 November 2026</div>
     </div>
-    <div class="film" data-id="HO00009480" data-name="mitti de putt" data-iso="" style="--h: 281">
+    <div class="film" data-id="HO00009480" data-name="mitti de putt" data-iso="2026-09-18" style="--h: 281">
       <div class="poster">
         <a class="plink" href="https://www.odeon.co.uk/films/mitti-de-putt/HO00009480/" target="_blank" rel="noopener" aria-label="Mitti De Putt on Odeon"></a>
 <img class="pimg" src="https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009480?width=400" alt="Mitti De Putt poster" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">        <span class="scrim"></span>
         <span class="ptitle">Mitti De Putt</span>
         <button class="mk-btn" type="button" aria-haspopup="true">+ Mark</button>
       </div>
-      <div class="fmeta">[TO BE ADDED]</div>
+      <div class="fmeta">18 September 2026</div>
     </div>
     <div class="film" data-id="HO00008415" data-name="moana" data-iso="2026-07-10" style="--h: 42">
       <div class="poster">
@@ -2474,6 +2474,21 @@ Gone since Tuesday 8 September 2026      </div>
     }
 
     var cards = [].slice.call(grid.querySelectorAll(".film"));
+
+    /* a mark only means something while its film is actually listed - drop
+       marks for anything that's fallen off this week's board, so a film
+       returning months/years later starts unmarked rather than resurfacing
+       whatever it was left as. */
+    (function pruneMarks() {
+      var live = {};
+      cards.forEach(function (c) { live[c.dataset.id] = true; });
+      var changed = false;
+      Object.keys(marks).forEach(function (id) {
+        if (!live[id]) { delete marks[id]; changed = true; }
+      });
+      if (changed) save();
+    })();
+
     cards.forEach(function (card) {
       var st = marks[card.dataset.id];
       if (st) card.dataset.status = st;

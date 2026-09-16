@@ -846,6 +846,21 @@
     }
 
     var cards = [].slice.call(grid.querySelectorAll(".film"));
+
+    /* a mark only means something while its film is actually listed - drop
+       marks for anything that's fallen off this week's board, so a film
+       returning months/years later starts unmarked rather than resurfacing
+       whatever it was left as. */
+    (function pruneMarks() {
+      var live = {};
+      cards.forEach(function (c) { live[c.dataset.id] = true; });
+      var changed = false;
+      Object.keys(marks).forEach(function (id) {
+        if (!live[id]) { delete marks[id]; changed = true; }
+      });
+      if (changed) save();
+    })();
+
     cards.forEach(function (card) {
       var st = marks[card.dataset.id];
       if (st) card.dataset.status = st;
