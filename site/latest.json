@@ -1,7 +1,245 @@
 {
-  "this": "2026-09-08",
-  "previous": null,
-  "total": 166,
-  "added": [],
-  "removed": []
+  "this": "2026-09-15",
+  "previous": "2026-09-08",
+  "total": 168,
+  "added": [
+    {
+      "id": "HO00009464",
+      "slug": "50-years-of-punk",
+      "title": "50 Years of Punk",
+      "url": "https://www.odeon.co.uk/films/50-years-of-punk/HO00009464/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009464?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null
+    },
+    {
+      "id": "HO00009487",
+      "slug": "bts-arirang-in-buenos-aires-live-viewing",
+      "title": "Bts Arirang in Buenos Aires Live Viewing",
+      "url": "https://www.odeon.co.uk/films/bts-arirang-in-buenos-aires-live-viewing/HO00009487/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009487?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null
+    },
+    {
+      "id": "HO00009488",
+      "slug": "bts-arirang-in-sao-paulo-live-viewing",
+      "title": "Bts Arirang in Sao Paulo Live Viewing",
+      "url": "https://www.odeon.co.uk/films/bts-arirang-in-sao-paulo-live-viewing/HO00009488/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009488?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null
+    },
+    {
+      "id": "HO00009478",
+      "slug": "daayra",
+      "title": "Daayra",
+      "url": "https://www.odeon.co.uk/films/daayra/HO00009478/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009478?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null
+    },
+    {
+      "id": "HO00009357",
+      "slug": "de-gaulle-part-2-liberte",
+      "title": "De Gaulle Part 2 Liberte",
+      "url": "https://www.odeon.co.uk/films/de-gaulle-part-2-liberte/HO00009357/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009357?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null
+    },
+    {
+      "id": "HO00009461",
+      "slug": "deadline-mandarin",
+      "title": "Deadline Mandarin",
+      "url": "https://www.odeon.co.uk/films/deadline-mandarin/HO00009461/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009461?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null
+    },
+    {
+      "id": "HO00009451",
+      "slug": "enna-vilai",
+      "title": "Enna Vilai",
+      "url": "https://www.odeon.co.uk/films/enna-vilai/HO00009451/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009451?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null
+    },
+    {
+      "id": "HO00009481",
+      "slug": "its-a-medical-miracle",
+      "title": "Its a Medical Miracle",
+      "url": "https://www.odeon.co.uk/films/its-a-medical-miracle/HO00009481/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009481?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null
+    },
+    {
+      "id": "HO00009494",
+      "slug": "leviticus-spotlight",
+      "title": "Leviticus Spotlight",
+      "url": "https://www.odeon.co.uk/films/leviticus-spotlight/HO00009494/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009494?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null
+    },
+    {
+      "id": "HO00009483",
+      "slug": "lo-law-and-order-malayalam",
+      "title": "Lo Law and Order Malayalam",
+      "url": "https://www.odeon.co.uk/films/lo-law-and-order-malayalam/HO00009483/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009483?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null
+    },
+    {
+      "id": "HO00009480",
+      "slug": "mitti-de-putt",
+      "title": "Mitti De Putt",
+      "url": "https://www.odeon.co.uk/films/mitti-de-putt/HO00009480/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009480?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null
+    },
+    {
+      "id": "HO00009486",
+      "slug": "saffron-kingdom",
+      "title": "Saffron Kingdom",
+      "url": "https://www.odeon.co.uk/films/saffron-kingdom/HO00009486/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009486?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null
+    },
+    {
+      "id": "HO00009475",
+      "slug": "the-cycle-of-love",
+      "title": "The Cycle of Love",
+      "url": "https://www.odeon.co.uk/films/the-cycle-of-love/HO00009475/",
+      "poster": "https://image.tmdb.org/t/p/w500/5yK0eXbsYIxXJQ9uNoG7RtAsM8W.jpg",
+      "poster_source": "tmdb",
+      "release_label": null,
+      "release_iso": null
+    },
+    {
+      "id": "HO00009476",
+      "slug": "vibe",
+      "title": "Vibe",
+      "url": "https://www.odeon.co.uk/films/vibe/HO00009476/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009476?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null
+    }
+  ],
+  "removed": [
+    {
+      "id": "HO00001426",
+      "slug": "conferencing-3-hour",
+      "title": "Conferencing 3 Hour",
+      "url": "https://www.odeon.co.uk/films/conferencing-3-hour/HO00001426/",
+      "poster": null,
+      "poster_source": null
+    },
+    {
+      "id": "HO00009400",
+      "slug": "eddie-cochran-don-t-forget-me",
+      "title": "Eddie Cochran Don T Forget Me",
+      "url": "https://www.odeon.co.uk/films/eddie-cochran-don-t-forget-me/HO00009400/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009400?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009285",
+      "slug": "exhibition-on-screen-james-mcneill-whistler",
+      "title": "Exhibition on Screen James Mcneill Whistler",
+      "url": "https://www.odeon.co.uk/films/exhibition-on-screen-james-mcneill-whistler/HO00009285/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009285?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009299",
+      "slug": "harry-potter-and-the-chamber-of-secrets",
+      "title": "Harry Potter and the Chamber of Secrets",
+      "url": "https://www.odeon.co.uk/films/harry-potter-and-the-chamber-of-secrets/HO00009299/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009299?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009428",
+      "slug": "iu-concert-the-golden-hour-re-release",
+      "title": "Iu Concert the Golden Hour Re Release",
+      "url": "https://www.odeon.co.uk/films/iu-concert-the-golden-hour-re-release/HO00009428/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009428?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009202",
+      "slug": "kikis-delivery-service-sub",
+      "title": "Kikis Delivery Service Sub",
+      "url": "https://www.odeon.co.uk/films/kikis-delivery-service-sub/HO00009202/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009202?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00008186",
+      "slug": "national-theatre-live-les-liaisons-dangereuses",
+      "title": "National Theatre Live Les Liaisons Dangereuses",
+      "url": "https://www.odeon.co.uk/films/national-theatre-live-les-liaisons-dangereuses/HO00008186/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00008186?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009394",
+      "slug": "odeon-pride-nights-polarized",
+      "title": "Odeon Pride Nights Polarized",
+      "url": "https://www.odeon.co.uk/films/odeon-pride-nights-polarized/HO00009394/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009394?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009457",
+      "slug": "sb19-wakas-at-simulathe-trilogy-concert-finale",
+      "title": "Sb19 Wakas at Simulathe Trilogy Concert Finale",
+      "url": "https://www.odeon.co.uk/films/sb19-wakas-at-simulathe-trilogy-concert-finale/HO00009457/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009457?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009370",
+      "slug": "the-passion-of-the-christ-2026",
+      "title": "The Passion of the Christ 2026",
+      "url": "https://www.odeon.co.uk/films/the-passion-of-the-christ-2026/HO00009370/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009370?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00008963",
+      "slug": "the-pout-pout-fish",
+      "title": "The Pout Pout Fish",
+      "url": "https://www.odeon.co.uk/films/the-pout-pout-fish/HO00008963/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00008963?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00008216",
+      "slug": "the-super-mario-galaxy-movie",
+      "title": "The Super Mario Galaxy Movie",
+      "url": "https://www.odeon.co.uk/films/the-super-mario-galaxy-movie/HO00008216/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00008216?width=400",
+      "poster_source": "odeon"
+    }
+  ]
 }
