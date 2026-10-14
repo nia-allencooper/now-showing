@@ -1,216 +1,447 @@
 {
-  "this": "2026-10-06",
-  "previous": "2026-09-29",
-  "total": 171,
+  "this": "2026-10-13",
+  "previous": "2026-10-06",
+  "total": 159,
   "added": [
+    {
+      "id": "HO00009241",
+      "slug": "418",
+      "title": "418",
+      "url": "https://www.odeon.co.uk/films/418/HO00009241/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009241?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009691",
+      "slug": "ali-g-who-iz-i",
+      "title": "Ali G Who Iz I",
+      "url": "https://www.odeon.co.uk/films/ali-g-who-iz-i/HO00009691/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009691?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009707",
+      "slug": "andrew-lloyd-webber-s-starlight-express",
+      "title": "Andrew Lloyd Webber's Starlight Express",
+      "url": "https://www.odeon.co.uk/films/andrew-lloyd-webber-s-starlight-express/HO00009707/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009707?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009705",
+      "slug": "chha-maya-chhapakkai-2",
+      "title": "Chha Maya Chhapakkai 2",
+      "url": "https://www.odeon.co.uk/films/chha-maya-chhapakkai-2/HO00009705/",
+      "poster": "https://image.tmdb.org/t/p/w500/wEX219Czsx6jztVtHDPQD93dX9d.jpg",
+      "poster_source": "tmdb",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009675",
+      "slug": "cine-excess-2026-carne",
+      "title": "Cine Excess 2026 Carne",
+      "url": "https://www.odeon.co.uk/films/cine-excess-2026-carne/HO00009675/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009675?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009677",
+      "slug": "cine-excess-2026-scum-of-the-earth",
+      "title": "Cine Excess 2026 Scum of the Earth",
+      "url": "https://www.odeon.co.uk/films/cine-excess-2026-scum-of-the-earth/HO00009677/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009677?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009674",
+      "slug": "cine-excess-2026-skeleton-park",
+      "title": "Cine Excess 2026 Skeleton Park",
+      "url": "https://www.odeon.co.uk/films/cine-excess-2026-skeleton-park/HO00009674/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009674?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009676",
+      "slug": "cine-excess-2026-wrath-of-the-gods",
+      "title": "Cine Excess 2026 Wrath of the Gods",
+      "url": "https://www.odeon.co.uk/films/cine-excess-2026-wrath-of-the-gods/HO00009676/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009676?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009694",
+      "slug": "its-my-time-mandarin",
+      "title": "Its My Time Mandarin",
+      "url": "https://www.odeon.co.uk/films/its-my-time-mandarin/HO00009694/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009694?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009683",
+      "slug": "national-theatre-live-the-motive-and-the-cue",
+      "title": "National Theatre Live the Motive and the Cue",
+      "url": "https://www.odeon.co.uk/films/national-theatre-live-the-motive-and-the-cue/HO00009683/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009683?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009706",
+      "slug": "nayyi-navelli",
+      "title": "Nayyi Navelli",
+      "url": "https://www.odeon.co.uk/films/nayyi-navelli/HO00009706/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009706?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009704",
+      "slug": "naza-plus-qa",
+      "title": "Naza Plus Qa",
+      "url": "https://www.odeon.co.uk/films/naza-plus-qa/HO00009704/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009704?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009681",
+      "slug": "nt-live-hay-fever",
+      "title": "Nt Live Hay Fever",
+      "url": "https://www.odeon.co.uk/films/nt-live-hay-fever/HO00009681/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009681?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009695",
+      "slug": "prahaar",
+      "title": "Prahaar",
+      "url": "https://www.odeon.co.uk/films/prahaar/HO00009695/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009695?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009553",
+      "slug": "primetime",
+      "title": "Primetime",
+      "url": "https://www.odeon.co.uk/films/primetime/HO00009553/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009553?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009710",
+      "slug": "ramayana-hindi",
+      "title": "Ramayana Hindi",
+      "url": "https://www.odeon.co.uk/films/ramayana-hindi/HO00009710/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009710?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009685",
+      "slug": "scream-30th-anniversary",
+      "title": "Scream 30TH Anniversary",
+      "url": "https://www.odeon.co.uk/films/scream-30th-anniversary/HO00009685/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009685?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00000164",
+      "slug": "scream-unseen-19-october",
+      "title": "Scream Unseen 19 October",
+      "url": "https://www.odeon.co.uk/films/scream-unseen-19-october/HO00000164/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00000164?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009688",
+      "slug": "stray-kids-world-tour-run-it-live-viewing",
+      "title": "Stray Kids World Tour Run It Live Viewing",
+      "url": "https://www.odeon.co.uk/films/stray-kids-world-tour-run-it-live-viewing/HO00009688/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009688?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009701",
+      "slug": "thaapi",
+      "title": "Thaapi",
+      "url": "https://www.odeon.co.uk/films/thaapi/HO00009701/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009701?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009692",
+      "slug": "the-influencer-project",
+      "title": "The Influencer Project",
+      "url": "https://www.odeon.co.uk/films/the-influencer-project/HO00009692/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009692?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009690",
+      "slug": "these-violent-delights-plus-recorded-qa",
+      "title": "These Violent Delights Plus Recorded Qa",
+      "url": "https://www.odeon.co.uk/films/these-violent-delights-plus-recorded-qa/HO00009690/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009690?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009698",
+      "slug": "titans",
+      "title": "Titans",
+      "url": "https://www.odeon.co.uk/films/titans/HO00009698/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009698?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00008828",
+      "slug": "tom-and-jerry-forbidden-compass",
+      "title": "Tom and Jerry Forbidden Compass",
+      "url": "https://www.odeon.co.uk/films/tom-and-jerry-forbidden-compass/HO00008828/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00008828?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009697",
+      "slug": "traces-of-justice-mandarin",
+      "title": "Traces of Justice Mandarin",
+      "url": "https://www.odeon.co.uk/films/traces-of-justice-mandarin/HO00009697/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009697?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    },
+    {
+      "id": "HO00009693",
+      "slug": "winter-of-the-crow",
+      "title": "Winter of the Crow",
+      "url": "https://www.odeon.co.uk/films/winter-of-the-crow/HO00009693/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009693?width=400",
+      "poster_source": "odeon",
+      "release_label": null,
+      "release_iso": null,
+      "added_iso": "2026-10-13"
+    }
+  ],
+  "removed": [
     {
       "id": "HO00009670",
       "slug": "24-hour-party-people-24-year-anniversary",
       "title": "24 Hour Party People 24 Year Anniversary",
       "url": "https://www.odeon.co.uk/films/24-hour-party-people-24-year-anniversary/HO00009670/",
       "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009670?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009592",
-      "slug": "agbara-nla-the-return",
-      "title": "Agbara Nla the Return",
-      "url": "https://www.odeon.co.uk/films/agbara-nla-the-return/HO00009592/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009592?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00009591",
+      "slug": "24-hour-party-people-plus-in-person-qa",
+      "title": "24 Hour Party People Plus in Person Qa",
+      "url": "https://www.odeon.co.uk/films/24-hour-party-people-plus-in-person-qa/HO00009591/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009591?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009678",
-      "slug": "cbeebies-panto-2026-treasure-island",
-      "title": "Cbeebies Panto 2026 Treasure Island",
-      "url": "https://www.odeon.co.uk/films/cbeebies-panto-2026-treasure-island/HO00009678/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009678?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00009573",
+      "slug": "avarachan-sons",
+      "title": "Avarachan Sons",
+      "url": "https://www.odeon.co.uk/films/avarachan-sons/HO00009573/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009573?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009634",
-      "slug": "chasing-millions",
-      "title": "Chasing Millions",
-      "url": "https://www.odeon.co.uk/films/chasing-millions/HO00009634/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009634?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00009541",
+      "slug": "baththa",
+      "title": "Baththa",
+      "url": "https://www.odeon.co.uk/films/baththa/HO00009541/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009541?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009642",
-      "slug": "comrade-kalyan",
-      "title": "Comrade Kalyan",
-      "url": "https://www.odeon.co.uk/films/comrade-kalyan/HO00009642/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009642?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00008568",
+      "slug": "charlie-the-wonderdog",
+      "title": "Charlie the Wonderdog",
+      "url": "https://www.odeon.co.uk/films/charlie-the-wonderdog/HO00008568/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00008568?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009643",
-      "slug": "eh-din-roz-ni-aune",
-      "title": "Eh Din Roz Ni Aune",
-      "url": "https://www.odeon.co.uk/films/eh-din-roz-ni-aune/HO00009643/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009643?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00009356",
+      "slug": "de-gaulle-resistance",
+      "title": "De Gaulle Resistance",
+      "url": "https://www.odeon.co.uk/films/de-gaulle-resistance/HO00009356/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009356?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009601",
-      "slug": "festive-fun-with-peppa-cinema-experience",
-      "title": "Festive Fun with Peppa Cinema Experience",
-      "url": "https://www.odeon.co.uk/films/festive-fun-with-peppa-cinema-experience/HO00009601/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009601?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00009566",
+      "slug": "dont-trouble-the-trouble-telugu",
+      "title": "Dont Trouble the Trouble Telugu",
+      "url": "https://www.odeon.co.uk/films/dont-trouble-the-trouble-telugu/HO00009566/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009566?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009672",
-      "slug": "george-michael-the-faith-tour",
-      "title": "George Michael the Faith Tour",
-      "url": "https://www.odeon.co.uk/films/george-michael-the-faith-tour/HO00009672/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009672?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00009335",
+      "slug": "english-national-ballet-the-sleeping-beauty",
+      "title": "English National Ballet the Sleeping Beauty",
+      "url": "https://www.odeon.co.uk/films/english-national-ballet-the-sleeping-beauty/HO00009335/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009335?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009649",
-      "slug": "go-for-broke-2-mandarin",
-      "title": "Go for Broke 2 Mandarin",
-      "url": "https://www.odeon.co.uk/films/go-for-broke-2-mandarin/HO00009649/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009649?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00009517",
+      "slug": "extra-geography",
+      "title": "Extra Geography",
+      "url": "https://www.odeon.co.uk/films/extra-geography/HO00009517/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009517?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009609",
-      "slug": "godzilla-minus-zero",
-      "title": "Godzilla Minus Zero",
-      "url": "https://www.odeon.co.uk/films/godzilla-minus-zero/HO00009609/",
-      "poster": "https://image.tmdb.org/t/p/w500/hSmIJluOJmTWvJs4d7kHRxjc8s8.jpg",
-      "poster_source": "tmdb",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00009309",
+      "slug": "harry-potter-and-the-half-blood-prince",
+      "title": "Harry Potter and the Half Blood Prince",
+      "url": "https://www.odeon.co.uk/films/harry-potter-and-the-half-blood-prince/HO00009309/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009309?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009605",
-      "slug": "i-love-boosters",
-      "title": "I Love Boosters",
-      "url": "https://www.odeon.co.uk/films/i-love-boosters/HO00009605/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009605?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00009494",
+      "slug": "leviticus-spotlight",
+      "title": "Leviticus Spotlight",
+      "url": "https://www.odeon.co.uk/films/leviticus-spotlight/HO00009494/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009494?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009570",
-      "slug": "i-play-rocky",
-      "title": "I Play Rocky",
-      "url": "https://www.odeon.co.uk/films/i-play-rocky/HO00009570/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009570?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00009284",
+      "slug": "linkin-park-unshatter",
+      "title": "Linkin Park Unshatter",
+      "url": "https://www.odeon.co.uk/films/linkin-park-unshatter/HO00009284/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009284?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009644",
-      "slug": "jailer-2-tamil",
-      "title": "Jailer 2 Tamil",
-      "url": "https://www.odeon.co.uk/films/jailer-2-tamil/HO00009644/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009644?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00009409",
+      "slug": "mirzapur-the-movie",
+      "title": "Mirzapur the Movie",
+      "url": "https://www.odeon.co.uk/films/mirzapur-the-movie/HO00009409/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009409?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009645",
-      "slug": "jailer-2-telugu",
-      "title": "Jailer 2 Telugu",
-      "url": "https://www.odeon.co.uk/films/jailer-2-telugu/HO00009645/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009645?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00009480",
+      "slug": "mitti-de-putt",
+      "title": "Mitti De Putt",
+      "url": "https://www.odeon.co.uk/films/mitti-de-putt/HO00009480/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009480?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009640",
-      "slug": "matloob-aelian",
-      "title": "Matloob Aelian",
-      "url": "https://www.odeon.co.uk/films/matloob-aelian/HO00009640/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009640?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00008415",
+      "slug": "moana",
+      "title": "Moana",
+      "url": "https://www.odeon.co.uk/films/moana/HO00008415/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00008415?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009534",
-      "slug": "meesaya-murukku-2",
-      "title": "Meesaya Murukku 2",
-      "url": "https://www.odeon.co.uk/films/meesaya-murukku-2/HO00009534/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009534?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-09-22"
+      "id": "HO00009547",
+      "slug": "mobile-suit-gundam-hathaway-double-bill",
+      "title": "Mobile Suit Gundam Hathaway Double Bill",
+      "url": "https://www.odeon.co.uk/films/mobile-suit-gundam-hathaway-double-bill/HO00009547/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009547?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009636",
-      "slug": "monster-mia",
-      "title": "Monster Mia",
-      "url": "https://www.odeon.co.uk/films/monster-mia/HO00009636/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009636?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00009395",
+      "slug": "odeon-pride-nights-rains-over-babel",
+      "title": "Odeon Pride Nights Rains Over Babel",
+      "url": "https://www.odeon.co.uk/films/odeon-pride-nights-rains-over-babel/HO00009395/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009395?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009638",
-      "slug": "naza-plus-qa-live-broadcast",
-      "title": "Naza Plus Qa Live Broadcast",
-      "url": "https://www.odeon.co.uk/films/naza-plus-qa-live-broadcast/HO00009638/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009638?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00008901",
+      "slug": "one-night-only",
+      "title": "One Night Only",
+      "url": "https://www.odeon.co.uk/films/one-night-only/HO00008901/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00008901?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009607",
-      "slug": "pans-labyrinth-20th-anniversary",
-      "title": "Pans Labyrinth 20TH Anniversary",
-      "url": "https://www.odeon.co.uk/films/pans-labyrinth-20th-anniversary/HO00009607/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009607?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00009559",
+      "slug": "prem-keetanu",
+      "title": "Prem Keetanu",
+      "url": "https://www.odeon.co.uk/films/prem-keetanu/HO00009559/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009559?width=400",
+      "poster_source": "odeon"
     },
     {
       "id": "HO00009661",
@@ -218,32 +449,15 @@
       "title": "Premada Oorali",
       "url": "https://www.odeon.co.uk/films/premada-oorali/HO00009661/",
       "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009661?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009647",
-      "slug": "ranabaali",
-      "title": "Ranabaali",
-      "url": "https://www.odeon.co.uk/films/ranabaali/HO00009647/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009647?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
-    },
-    {
-      "id": "HO00005888",
-      "slug": "scream-unseen-20-october",
-      "title": "Scream Unseen 20 October",
-      "url": "https://www.odeon.co.uk/films/scream-unseen-20-october/HO00005888/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00005888?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00000174",
+      "slug": "screen-hire-2-hours",
+      "title": "Screen Hire 2 Hours",
+      "url": "https://www.odeon.co.uk/films/screen-hire-2-hours/HO00000174/",
+      "poster": null,
+      "poster_source": null
     },
     {
       "id": "HO00001354",
@@ -251,21 +465,55 @@
       "title": "Screen Hire 3 Hours",
       "url": "https://www.odeon.co.uk/films/screen-hire-3-hours/HO00001354/",
       "poster": null,
-      "poster_source": null,
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "poster_source": null
     },
     {
-      "id": "HO00000157",
-      "slug": "screen-unseen-19-october",
-      "title": "Screen Unseen 19 October",
-      "url": "https://www.odeon.co.uk/films/screen-unseen-19-october/HO00000157/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00000157?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00009588",
+      "slug": "sigma-tamil",
+      "title": "Sigma Tamil",
+      "url": "https://www.odeon.co.uk/films/sigma-tamil/HO00009588/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009588?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009567",
+      "slug": "sigma-telugu",
+      "title": "Sigma Telugu",
+      "url": "https://www.odeon.co.uk/films/sigma-telugu/HO00009567/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009567?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00006623",
+      "slug": "sinners",
+      "title": "Sinners",
+      "url": "https://www.odeon.co.uk/films/sinners/HO00006623/",
+      "poster": "https://image.tmdb.org/t/p/w500/fWPgbnt2LSqkQ6cdQc0SZN9CpLm.jpg",
+      "poster_source": "tmdb"
+    },
+    {
+      "id": "HO00009111",
+      "slug": "spa-weekend",
+      "title": "Spa Weekend",
+      "url": "https://www.odeon.co.uk/films/spa-weekend/HO00009111/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009111?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00008241",
+      "slug": "stitch-head",
+      "title": "Stitch Head",
+      "url": "https://www.odeon.co.uk/films/stitch-head/HO00008241/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00008241?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009331",
+      "slug": "stop-that-train",
+      "title": "Stop That Train",
+      "url": "https://www.odeon.co.uk/films/stop-that-train/HO00009331/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009331?width=400",
+      "poster_source": "odeon"
     },
     {
       "id": "HO00009631",
@@ -273,32 +521,71 @@
       "title": "Tenzing",
       "url": "https://www.odeon.co.uk/films/tenzing/HO00009631/",
       "poster": "https://image.tmdb.org/t/p/w500/eI0QW02PYqhnmIvLRdn9vrfVVP7.jpg",
-      "poster_source": "tmdb",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "poster_source": "tmdb"
     },
     {
-      "id": "HO00009671",
-      "slug": "the-lost-children-of-tuam",
-      "title": "The Lost Children of Tuam",
-      "url": "https://www.odeon.co.uk/films/the-lost-children-of-tuam/HO00009671/",
-      "poster": "https://image.tmdb.org/t/p/w500/pRto654suhD1etcNaVI0UzXYtVY.jpg",
-      "poster_source": "tmdb",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00008910",
+      "slug": "the-dog-stars",
+      "title": "The Dog Stars",
+      "url": "https://www.odeon.co.uk/films/the-dog-stars/HO00008910/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00008910?width=400",
+      "poster_source": "odeon"
     },
     {
-      "id": "HO00009633",
-      "slug": "the-yellow-tie",
-      "title": "The Yellow Tie",
-      "url": "https://www.odeon.co.uk/films/the-yellow-tie/HO00009633/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009633?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
+      "id": "HO00009293",
+      "slug": "the-hunger-games-mockingjay-part-2-2026",
+      "title": "The Hunger Games Mockingjay Part 2 2026",
+      "url": "https://www.odeon.co.uk/films/the-hunger-games-mockingjay-part-2-2026/HO00009293/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009293?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009402",
+      "slug": "the-incomer",
+      "title": "The Incomer",
+      "url": "https://www.odeon.co.uk/films/the-incomer/HO00009402/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009402?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009516",
+      "slug": "the-weight",
+      "title": "The Weight",
+      "url": "https://www.odeon.co.uk/films/the-weight/HO00009516/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009516?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009540",
+      "slug": "thellakaagitham-telugu",
+      "title": "Thellakaagitham Telugu",
+      "url": "https://www.odeon.co.uk/films/thellakaagitham-telugu/HO00009540/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009540?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009536",
+      "slug": "tutt-paini-english-ne",
+      "title": "Tutt Paini English Ne",
+      "url": "https://www.odeon.co.uk/films/tutt-paini-english-ne/HO00009536/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009536?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009359",
+      "slug": "whisper-of-the-heart-dub",
+      "title": "Whisper of the Heart Dub",
+      "url": "https://www.odeon.co.uk/films/whisper-of-the-heart-dub/HO00009359/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009359?width=400",
+      "poster_source": "odeon"
+    },
+    {
+      "id": "HO00009358",
+      "slug": "whisper-of-the-heart-sub",
+      "title": "Whisper of the Heart Sub",
+      "url": "https://www.odeon.co.uk/films/whisper-of-the-heart-sub/HO00009358/",
+      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009358?width=400",
+      "poster_source": "odeon"
     },
     {
       "id": "HO00009563",
@@ -306,275 +593,6 @@
       "title": "Yezhu Kadal Yezhu Malai",
       "url": "https://www.odeon.co.uk/films/yezhu-kadal-yezhu-malai/HO00009563/",
       "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009563?width=400",
-      "poster_source": "odeon",
-      "release_label": null,
-      "release_iso": null,
-      "added_iso": "2026-10-06"
-    }
-  ],
-  "removed": [
-    {
-      "id": "HO00009584",
-      "slug": "aadarsha-kutumbam-house-no-47-telugu",
-      "title": "Aadarsha Kutumbam House No 47 Telugu",
-      "url": "https://www.odeon.co.uk/films/aadarsha-kutumbam-house-no-47-telugu/HO00009584/",
-      "poster": "https://image.tmdb.org/t/p/w500/4xyzmQj2SrocgWVlV1aCxeyCDsz.jpg",
-      "poster_source": "tmdb"
-    },
-    {
-      "id": "HO00009532",
-      "slug": "aaram",
-      "title": "Aaram",
-      "url": "https://www.odeon.co.uk/films/aaram/HO00009532/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009532?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009537",
-      "slug": "babystar",
-      "title": "Babystar",
-      "url": "https://www.odeon.co.uk/films/babystar/HO00009537/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009537?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009427",
-      "slug": "catvideofest-2026",
-      "title": "Catvideofest 2026",
-      "url": "https://www.odeon.co.uk/films/catvideofest-2026/HO00009427/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009427?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009478",
-      "slug": "daayra",
-      "title": "Daayra",
-      "url": "https://www.odeon.co.uk/films/daayra/HO00009478/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009478?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009522",
-      "slug": "dhoomakethu",
-      "title": "Dhoomakethu",
-      "url": "https://www.odeon.co.uk/films/dhoomakethu/HO00009522/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009522?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009565",
-      "slug": "dont-trouble-the-trouble-malayalam",
-      "title": "Dont Trouble the Trouble Malayalam",
-      "url": "https://www.odeon.co.uk/films/dont-trouble-the-trouble-malayalam/HO00009565/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009565?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009535",
-      "slug": "dorothy",
-      "title": "Dorothy",
-      "url": "https://www.odeon.co.uk/films/dorothy/HO00009535/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009535?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009305",
-      "slug": "harry-potter-and-the-order-of-the-phoenix",
-      "title": "Harry Potter and the Order of the Phoenix",
-      "url": "https://www.odeon.co.uk/films/harry-potter-and-the-order-of-the-phoenix/HO00009305/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009305?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009520",
-      "slug": "her-private-hell",
-      "title": "Her Private Hell",
-      "url": "https://www.odeon.co.uk/films/her-private-hell/HO00009520/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009520?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009343",
-      "slug": "i-want-your-sex",
-      "title": "I Want Your Sex",
-      "url": "https://www.odeon.co.uk/films/i-want-your-sex/HO00009343/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009343?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009419",
-      "slug": "kuzma",
-      "title": "Kuzma",
-      "url": "https://www.odeon.co.uk/films/kuzma/HO00009419/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009419?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009538",
-      "slug": "lutt-mubarak",
-      "title": "Lutt Mubarak",
-      "url": "https://www.odeon.co.uk/films/lutt-mubarak/HO00009538/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009538?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009509",
-      "slug": "manhunter-40th-anniversary",
-      "title": "Manhunter 40TH Anniversary",
-      "url": "https://www.odeon.co.uk/films/manhunter-40th-anniversary/HO00009509/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009509?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009048",
-      "slug": "met-opera-2026-27-cosi-fan-tutte",
-      "title": "Met Opera 2026 27 Cosi Fan Tutte",
-      "url": "https://www.odeon.co.uk/films/met-opera-2026-27-cosi-fan-tutte/HO00009048/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009048?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009313",
-      "slug": "mutiny",
-      "title": "Mutiny",
-      "url": "https://www.odeon.co.uk/films/mutiny/HO00009313/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009313?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009342",
-      "slug": "premature",
-      "title": "Premature",
-      "url": "https://www.odeon.co.uk/films/premature/HO00009342/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009342?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009165",
-      "slug": "radiohead-x-nosferatu-a-symphony-of-horror",
-      "title": "Radiohead X Nosferatu a Symphony of Horror",
-      "url": "https://www.odeon.co.uk/films/radiohead-x-nosferatu-a-symphony-of-horror/HO00009165/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009165?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009498",
-      "slug": "red-rue-express",
-      "title": "Red Rue Express",
-      "url": "https://www.odeon.co.uk/films/red-rue-express/HO00009498/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009498?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009230",
-      "slug": "rise-of-the-footsoldier-retribution",
-      "title": "Rise of the Footsoldier Retribution",
-      "url": "https://www.odeon.co.uk/films/rise-of-the-footsoldier-retribution/HO00009230/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009230?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009521",
-      "slug": "shadows-of-beirut",
-      "title": "Shadows of Beirut",
-      "url": "https://www.odeon.co.uk/films/shadows-of-beirut/HO00009521/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009521?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009441",
-      "slug": "singh-vs-kaur-2",
-      "title": "Singh vs Kaur 2",
-      "url": "https://www.odeon.co.uk/films/singh-vs-kaur-2/HO00009441/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009441?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009423",
-      "slug": "take-it-or-leave-it",
-      "title": "Take It or Leave It",
-      "url": "https://www.odeon.co.uk/films/take-it-or-leave-it/HO00009423/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009423?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00008819",
-      "slug": "the-death-of-robin-hood",
-      "title": "The Death of Robin Hood",
-      "url": "https://www.odeon.co.uk/films/the-death-of-robin-hood/HO00008819/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00008819?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00008248",
-      "slug": "the-devil-wears-prada-2",
-      "title": "The Devil Wears Prada 2",
-      "url": "https://www.odeon.co.uk/films/the-devil-wears-prada-2/HO00008248/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00008248?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009290",
-      "slug": "the-hunger-games-mockingjay-part-1-2026",
-      "title": "The Hunger Games Mockingjay Part 1 2026",
-      "url": "https://www.odeon.co.uk/films/the-hunger-games-mockingjay-part-1-2026/HO00009290/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009290?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009528",
-      "slug": "the-paradise-hindi",
-      "title": "The Paradise Hindi",
-      "url": "https://www.odeon.co.uk/films/the-paradise-hindi/HO00009528/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009528?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009454",
-      "slug": "the-paradise-telugu",
-      "title": "The Paradise Telugu",
-      "url": "https://www.odeon.co.uk/films/the-paradise-telugu/HO00009454/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009454?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009449",
-      "slug": "the-route-to-cappyness",
-      "title": "The Route to Cappyness",
-      "url": "https://www.odeon.co.uk/films/the-route-to-cappyness/HO00009449/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009449?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009275",
-      "slug": "the-transformers-the-movie-40th-anniversary",
-      "title": "The Transformers the Movie 40TH Anniversary",
-      "url": "https://www.odeon.co.uk/films/the-transformers-the-movie-40th-anniversary/HO00009275/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009275?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009524",
-      "slug": "the-vvaan-force-of-the-forrest",
-      "title": "The Vvaan Force of the Forrest",
-      "url": "https://www.odeon.co.uk/films/the-vvaan-force-of-the-forrest/HO00009524/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009524?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009417",
-      "slug": "unidentified-murder-cantonese",
-      "title": "Unidentified Murder Cantonese",
-      "url": "https://www.odeon.co.uk/films/unidentified-murder-cantonese/HO00009417/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009417?width=400",
-      "poster_source": "odeon"
-    },
-    {
-      "id": "HO00009476",
-      "slug": "vibe",
-      "title": "Vibe",
-      "url": "https://www.odeon.co.uk/films/vibe/HO00009476/",
-      "poster": "https://vwc.odeon.co.uk/CDN/media/entity/get/FilmPosterGraphic/HO00009476?width=400",
       "poster_source": "odeon"
     }
   ]
